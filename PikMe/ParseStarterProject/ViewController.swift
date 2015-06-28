@@ -18,5 +18,18 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBOutlet var rememberMeFlag: UISwitch!
+    @IBOutlet var usernameField: UITextField!
+    @IBOutlet var passwordField: UITextField!
+    
+    @IBAction func login(sender: AnyObject) {
+    
+    }
+    
+    @IBAction func forgotPassword(sender: AnyObject) {
+    }
+    
+    @IBOutlet var signUpNow: UIButton!
 }
 
