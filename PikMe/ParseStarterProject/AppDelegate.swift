@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // PFFacebookUtils.initializeFacebook()
         // ****************************************************************************
 
+        Parse.setApplicationId("9BjxftqmgJY071yjS6ZCStSYQ2bnmDdcfjvIlPj7", clientKey: "6tfGkGGUJVzpABaR2JYW9OMES95RvwCekaSpOphy")
+        
         PFUser.enableAutomaticUser()
 
         let defaultACL = PFACL();
