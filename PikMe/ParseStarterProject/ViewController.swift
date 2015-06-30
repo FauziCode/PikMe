@@ -24,7 +24,20 @@ class ViewController: UIViewController {
     @IBOutlet var passwordField: UITextField!
     
     @IBAction func login(sender: AnyObject) {
-    
+        
+        //LP30-06-2016
+        //Test uso del metodo di login
+        Cloud.logIn(usernameField.text, password: passwordField.text, callback: {
+        (succeded: Bool, msgError: String)->Void in
+            if succeded
+            {
+                println("Loggato abbestia")
+            }
+            else
+            {
+                println("Strunzo " + msgError)
+            }
+        })
     }
     
     @IBAction func forgotPassword(sender: AnyObject) {
