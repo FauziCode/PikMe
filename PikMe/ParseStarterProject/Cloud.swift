@@ -33,7 +33,7 @@ class Cloud
             else
             {
                 // KO
-                callback(succeded:false, msgError:error?.userInfo?["error"] as String);
+                callback(succeded:false, msgError:error?.userInfo?["error"] as! String);
             }
         }
     }
@@ -55,7 +55,7 @@ class Cloud
             if let error = error
             {
                 // KO
-                let errorString = error.userInfo?["error"] as String
+                let errorString = error.userInfo?["error"] as! String
                 callback(succeded: false, msgError: errorString)
             }
             else
