@@ -9,6 +9,7 @@ import UIKit
 import Bolts
 import Parse
 
+
 // If you want to use any of the UI components, uncomment this line
 // import ParseUI
 
@@ -77,9 +78,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
             application.registerForRemoteNotificationTypes(types)
         }
+        
+        /*
+        LP30-06-2015
+        
+        Cloud.signUp("luca", password: "puppa", email: "luca.paolo.paganelli@alice.it",
+        callback: {
+            (succeded: Bool, msgError: String)->Void in
+            if succeded
+            {
+                println("OK")
+            }
+            else
+            {
+                println("KO")
+            }
+        })*/
+        
 
         return true
     }
+    
+    
+    
+    
+    
+    
+    
 
     //--------------------------------------
     // MARK: Push Notifications
