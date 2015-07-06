@@ -15,13 +15,16 @@ class ImageCell: UITableViewCell {
     @IBOutlet var photoImage: UIImageView!
     @IBOutlet var likeButton: UIButton!
     
+    var likeButtonPressed : Bool = false
+    
     @IBAction func onLikePressed(sender: AnyObject) {
         toggleLikeButton()
         /*other stuffs here...*/
     }
     
     func toggleLikeButton(){
-    
+        likeButtonPressed = !likeButtonPressed
+        likeButtonPressed ? likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil) : likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
     }
     
     override func awakeFromNib() {
