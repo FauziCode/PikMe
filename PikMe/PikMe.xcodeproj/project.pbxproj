@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D4013B61B45279200141456 /* logoPikMe_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4013B51B45279200141456 /* logoPikMe_03.png */; };
+		7D67A02D1B4AC3B500FECAEE /* starrynight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DECAEB61B4975970061559E /* starrynight.ttf */; };
 		7D70AF7D1B3EEB230073EF3B /* teen-girl-with-smartphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D70AF7C1B3EEB230073EF3B /* teen-girl-with-smartphone.jpg */; };
 		7DECAEB31B4941AD0061559E /* sfondofoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DECAEB21B4941AD0061559E /* sfondofoto.png */; };
 		7DECAEB51B49488C0061559E /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DECAEB41B49488C0061559E /* icon_like.png */; };
@@ -231,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D67A02D1B4AC3B500FECAEE /* starrynight.ttf in Resources */,
 				7D4013B61B45279200141456 /* logoPikMe_03.png in Resources */,
 				7DECAEB51B49488C0061559E /* icon_like.png in Resources */,
 				7D70AF7D1B3EEB230073EF3B /* teen-girl-with-smartphone.jpg in Resources */,
