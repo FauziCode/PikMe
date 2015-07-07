@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>4158136F-BC7D-4177-93E4-E7F58FF724B5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>PikMe</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>1C44F1952AF27B483D94158706CED60A1D24ED75</key>
 		<string>https://github.com/FauziCode/PikMe.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>PikMe/PikMe.xcodeproj/project.xcworkspace</string>
+	<string>PikMe/PikMe.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1C44F1952AF27B483D94158706CED60A1D24ED75</key>
