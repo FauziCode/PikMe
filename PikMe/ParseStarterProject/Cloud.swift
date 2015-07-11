@@ -66,4 +66,30 @@ class Cloud
         }
     }
     
+    //---------------------------------------------------------------------
+    //                              getPikList
+    //---------------------------------------------------------------------
+    class func getPikList(maxPik:Int)->[Pik]?{
+        var pikList = [Pik]()
+        var query = Pik.query()
+        
+        query!.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil
+            {
+                // The find succeeded.
+                println("Successfully retrieved \(objects!.count) scores.")
+                pikList = objects as! [Pik]
+                
+            } else
+            {
+                // Log details of the failure
+                println("Error: \(error!) \(error!.userInfo!)")
+            }
+        }
+        return pikList
+    }
+    
+    
 }

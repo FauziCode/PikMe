@@ -21,7 +21,7 @@ class Pik: PFObject, PFSubclassing {
     @NSManaged var user: PFUser
     @NSManaged var like: Int
     
-    // i due metodi che segiono servono a conformare la classe al protocollo PFSubclassing
+    // i due metodi che seguono servono a conformare la classe al protocollo PFSubclassing
     
     // Setta il nome della classe Come viene visualizzata nel backend di parse
     class func parseClassName() -> String {
@@ -57,12 +57,12 @@ class Pik: PFObject, PFSubclassing {
     
     }
     
-    func like(callback: (succeded: Bool, msgError: String?)->Void){
+    //Chiamare questo metodo per incrementare il like relativo ad un Pik
+    func like(callback: (succeded: Bool, msgError: String?)->Void)
+    {
         //la funzione incrementKey di PFObject incrementa una variabile numerica in modo atomico
         //per questo motivo chiamo anche la saveIn background...
         self.incrementKey("like")
-        //?????? non so se devo aggiornare nache in locale  
-        //self.like += 1
         self.saveInBackgroundWithBlock {
             (succceded :Bool, error: NSError?) -> Void in
             if error != nil
@@ -79,12 +79,30 @@ class Pik: PFObject, PFSubclassing {
         }
     }
     
-    func unlike(callback: (succeded: Bool, msgError: String)->Void){
-    
+    //Chiamare questo metodo per decrementare il like relativo ad un Pik
+    func unlike(callback: (succeded: Bool, msgError: String?)->Void)
+    {
+        self.incrementKey("like", byAmount: -1)
+        self.saveInBackgroundWithBlock {
+            (succceded :Bool, error: NSError?) -> Void in
+            if error != nil
+            {
+                //Incremento non riuscito
+                let details = "Error: \(error!) \(error!.userInfo!)"
+                callback(succeded: false, msgError: details)
+            }
+            else
+            {
+                callback(succeded: true, msgError: nil)
+                
+            }
+        }
+
     }
     
     //metodo costruttore
-    init(image: UIImage, comment: String?) {
+    init(image: UIImage, comment: String?)
+    {
         super.init()
         self.user = PFUser.currentUser()!
         self.image = image
@@ -93,10 +111,11 @@ class Pik: PFObject, PFSubclassing {
         self.like = 1;
         // o no
         //self.like = 0;
-        }
+    }
     
     //costruttore vuoto
-    override init() {
+    override init()
+    {
         super.init()
         
     }
