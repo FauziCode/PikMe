@@ -14,7 +14,7 @@ import Parse
 
 public class Pik: PFObject, PFSubclassing {
     
-    var image: UIImage!
+    
     
     //@NSManaged Permette di memorizzare le proprietà dell'oggetto come coppia chiave valore Automaticamente
     @NSManaged var imageFile: PFFile
@@ -100,8 +100,15 @@ public class Pik: PFObject, PFSubclassing {
 
     }
     
-    public func getImage() -> UIImage {
-        return self.image
+    public func getImage(callback: (image: UIImage?, msgError: String?)->Void){
+        self.imageFile.getDataInBackgroundWithBlock { (dati, error) -> Void in
+            if error != nil {
+                callback (image: nil , msgError: "impossibile ricevere l'immagine dal server")
+            }else if let dati = dati {
+                let image = UIImage(data: dati)
+                callback (image: image , msgError: nil)
+            }
+        }
     }
     
     //metodo costruttore
@@ -109,7 +116,9 @@ public class Pik: PFObject, PFSubclassing {
     {
         super.init()
         self.user = PFUser.currentUser()!
-        self.image = image
+        let pictureData = UIImagePNGRepresentation(image)
+        self.imageFile = PFFile(name: "image", data: pictureData)
+        
         
         //credo che la mia foto piaccia almeno a me stesso
         self.like = 1;

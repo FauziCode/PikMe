@@ -25,27 +25,59 @@ class PikMe_Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testSendAndRetrieveToParse(){
+    func testParseSendAndRetrieve(){
+        // creo un oggetto pik da inviate e ed un expectation per il test asincrono
         var pik = Pik(image: image!)
+        let expectation = expectationWithDescription("Parse connection")
+        
+        //provo a salvare su Parse
         pik.saveInBackgroundWithBlock { (ok:Bool, error:NSError?) -> Void in
             if error != nil {
                 XCTFail("connessione al server fallita")
             }
             else{
-                var piks = Cloud.getPikList(1)
-                if let pik = piks?.last{
-                    XCTAssert(pik.getImage().isEqual(self.image), "File caricato e ricevuto correttamente")
-                }
+                // se ottengo la lista di pik prendo il primo e controllo se è uguale a quello che ho appena inviato
+                var piks : [Pik]?
+                Cloud.getPikList(10, callback: { (pikList, msgError) -> Void in
+                    piks = pikList
+                    if let pik = piks?.last{
+                        var img : UIImage?
+                        pik.getImage { (image, msgError) -> Void in
+                            img = image!
+                            if img!.isEqual(self.image){
+                                XCTAssert(true, "File caricato e ricevuto correttamente")
+                            }
+                            else {
+                                XCTFail("l'immagine inviata non corrisponde a quella ricevuta")
+                            }
+                            expectation.fulfill()
+                        }
+                        
+                    }else{
+                        XCTFail("non ricevo nulla dal server")
+                    }
+                    
+                    
+                    expectation.fulfill()
+                })
+                
+                
+                
                 
                 
             }
+            expectation.fulfill()
         }
+        
+        //se entro 10 secondi non ho concluso il test fallisce
+        waitForExpectationsWithTimeout(10.0,handler:nil)
+        
     }
     
     
     func testPerformanceExample() {
         self.measureBlock() {
-            Cloud.getPikList(100)
+            
         }
     }
     
