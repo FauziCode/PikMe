@@ -15,12 +15,12 @@ import Parse
 //---------------------------------------------------------------------
 //                              CLOUD
 //---------------------------------------------------------------------
-class Cloud
+public class Cloud
 {
     //---------------------------------------------------------------------
     //                              logIn
     //---------------------------------------------------------------------
-    class func logIn(username: String, password: String, callback: (succeded: Bool, msgError: String)->Void)
+    public class func logIn(username: String, password: String, callback: (succeded: Bool, msgError: String)->Void)
     {
         PFUser.logInWithUsernameInBackground(username.lowercaseString, password:password)
         {
@@ -41,7 +41,7 @@ class Cloud
     //---------------------------------------------------------------------
     //                              signUp
     //---------------------------------------------------------------------
-    class func signUp(username: String, password: String, email: String, callback: (succeded: Bool, msgError: String)->Void)
+    public class func signUp(username: String, password: String, email: String, callback: (succeded: Bool, msgError: String)->Void)
     {
         var user = PFUser()
         
@@ -69,7 +69,7 @@ class Cloud
     //---------------------------------------------------------------------
     //                              getPikList
     //---------------------------------------------------------------------
-    class func getPikList(maxPik:Int)->[Pik]?{
+    public class func getPikList(maxPik:Int)->[Pik]?{
         var pikList = [Pik]()
         var query = Pik.query()
         

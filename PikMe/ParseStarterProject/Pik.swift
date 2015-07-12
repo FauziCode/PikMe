@@ -12,7 +12,7 @@ import Parse
 //Estendo La classe PFObject e la rendo conforme al protocollo PFSubclassing
 //concedetemi di chiamare la foto Pik visto che l'app si chiama PikMe
 
-class Pik: PFObject, PFSubclassing {
+public class Pik: PFObject, PFSubclassing {
     
     var image: UIImage!
     
@@ -24,13 +24,13 @@ class Pik: PFObject, PFSubclassing {
     // i due metodi che seguono servono a conformare la classe al protocollo PFSubclassing
     
     // Setta il nome della classe Come viene visualizzata nel backend di parse
-    class func parseClassName() -> String {
+    public class func parseClassName() -> String {
         return "Pik"
     }
     
     //permette a Parse di sapere che intendiamo utilizzare questa sottoclasse per tutto gli oggetti di tipo Pik
     //ovviamente questa operazione viene fatta solo alla prima istanza
-    override class func initialize() {
+    public override class func initialize() {
         var onceToken: dispatch_once_t = 0
         dispatch_once(&onceToken) {
             self.registerSubclass()
@@ -38,7 +38,7 @@ class Pik: PFObject, PFSubclassing {
     }
     
     //override della funzione query base
-    override class func query() -> PFQuery? {
+    public override class func query() -> PFQuery? {
         //creo l'oggetto query
         let query = PFQuery(className: Pik.parseClassName())
         //aggiungo tutti i dettagli dell'utente che ha postato la foto
@@ -49,7 +49,7 @@ class Pik: PFObject, PFSubclassing {
     }
     
     //chi mi ha votato?
-    func queryWhoLikeMe() -> PFQuery?{
+    public func queryWhoLikeMe() -> PFQuery?{
         
         let relation = self.relationForKey("likeUsers")
         let query = relation.query()
@@ -58,7 +58,7 @@ class Pik: PFObject, PFSubclassing {
     }
     
     //Chiamare questo metodo per incrementare il like relativo ad un Pik
-    func like(callback: (succeded: Bool, msgError: String?)->Void)
+    public func like(callback: (succeded: Bool, msgError: String?)->Void)
     {
         //la funzione incrementKey di PFObject incrementa una variabile numerica in modo atomico
         //per questo motivo chiamo anche la saveIn background...
@@ -80,7 +80,7 @@ class Pik: PFObject, PFSubclassing {
     }
     
     //Chiamare questo metodo per decrementare il like relativo ad un Pik
-    func unlike(callback: (succeded: Bool, msgError: String?)->Void)
+    public func unlike(callback: (succeded: Bool, msgError: String?)->Void)
     {
         self.incrementKey("like", byAmount: -1)
         self.saveInBackgroundWithBlock {
@@ -100,8 +100,12 @@ class Pik: PFObject, PFSubclassing {
 
     }
     
+    public func getImage() -> UIImage {
+        return self.image
+    }
+    
     //metodo costruttore
-    init(image: UIImage, comment: String?)
+    public init(image: UIImage)
     {
         super.init()
         self.user = PFUser.currentUser()!
@@ -114,7 +118,7 @@ class Pik: PFObject, PFSubclassing {
     }
     
     //costruttore vuoto
-    override init()
+    public override init()
     {
         super.init()
         

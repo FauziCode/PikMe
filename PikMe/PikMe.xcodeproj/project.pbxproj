@@ -42,7 +42,30 @@
 		81BA81811A49E10C00E65899 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81801A49E10C00E65899 /* ParseUI.framework */; };
 		AC6E6E581B4BB2CB00F16121 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E6E571B4BB2CB00F16121 /* Cloud.swift */; };
 		AC6E6E5A1B4BB30900F16121 /* Pik.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E6E591B4BB30900F16121 /* Pik.swift */; };
+		ACB7C3A31B51C20800C90A78 /* PikMe_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C3A21B51C20800C90A78 /* PikMe_Tests.swift */; };
+		ACB7C3A91B52526900C90A78 /* Pik.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E6E591B4BB30900F16121 /* Pik.swift */; };
+		ACB7C3AA1B52527000C90A78 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E6E571B4BB2CB00F16121 /* Cloud.swift */; };
+		ACB7C3AB1B52529400C90A78 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816C1A49DB6800E65899 /* Parse.framework */; };
+		ACB7C3AC1B52529900C90A78 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816B1A49DB6800E65899 /* Bolts.framework */; };
+		ACB7C3AD1B52529E00C90A78 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816D1A49DB6800E65899 /* ParseCrashReporting.framework */; };
+		ACB7C3AE1B5252A200C90A78 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816E1A49DB6800E65899 /* ParseFacebookUtils.framework */; };
+		ACB7C3AF1B5252A600C90A78 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81801A49E10C00E65899 /* ParseUI.framework */; };
+		ACB7C3B01B5252AD00C90A78 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		ACB7C3B11B5252B300C90A78 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817C1A49E0EA00E65899 /* MobileCoreServices.framework */; };
+		ACB7C3B21B5252B700C90A78 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
+		ACB7C3B31B5252BC00C90A78 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
+		ACB7C3B41B5252C100C90A78 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81761A49E0D500E65899 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ACB7C3A41B51C20800C90A78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81BA81441A49DA1800E65899;
+			remoteInfo = PikMe;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +106,9 @@
 		81BA81821A49E27F00E65899 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC6E6E571B4BB2CB00F16121 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		AC6E6E591B4BB30900F16121 /* Pik.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pik.swift; sourceTree = "<group>"; };
+		ACB7C39E1B51C20800C90A78 /* PikMe Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PikMe Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB7C3A11B51C20800C90A78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACB7C3A21B51C20800C90A78 /* PikMe_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikMe_Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +126,23 @@
 				81BA81731A49DB6800E65899 /* ParseFacebookUtils.framework in Frameworks */,
 				81BA81811A49E10C00E65899 /* ParseUI.framework in Frameworks */,
 				81BA81701A49DB6800E65899 /* Bolts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACB7C39B1B51C20800C90A78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACB7C3B01B5252AD00C90A78 /* libstdc++.6.dylib in Frameworks */,
+				ACB7C3B11B5252B300C90A78 /* MobileCoreServices.framework in Frameworks */,
+				ACB7C3AB1B52529400C90A78 /* Parse.framework in Frameworks */,
+				ACB7C3AD1B52529E00C90A78 /* ParseCrashReporting.framework in Frameworks */,
+				ACB7C3AF1B5252A600C90A78 /* ParseUI.framework in Frameworks */,
+				ACB7C3B31B5252BC00C90A78 /* AudioToolbox.framework in Frameworks */,
+				ACB7C3AE1B5252A200C90A78 /* ParseFacebookUtils.framework in Frameworks */,
+				ACB7C3B21B5252B700C90A78 /* SystemConfiguration.framework in Frameworks */,
+				ACB7C3B41B5252C100C90A78 /* libsqlite3.dylib in Frameworks */,
+				ACB7C3AC1B52529900C90A78 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +184,7 @@
 			children = (
 				7DECAEB71B4975AE0061559E /* Content */,
 				81BA81471A49DA1800E65899 /* PikMe */,
+				ACB7C39F1B51C20800C90A78 /* PikMe Tests */,
 				81BA816A1A49DB5600E65899 /* Frameworks */,
 				81BA81461A49DA1800E65899 /* Products */,
 			);
@@ -150,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				81BA81451A49DA1800E65899 /* PikMe.app */,
+				ACB7C39E1B51C20800C90A78 /* PikMe Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,6 +252,23 @@
 			name = "System Frameworks";
 			sourceTree = "<group>";
 		};
+		ACB7C39F1B51C20800C90A78 /* PikMe Tests */ = {
+			isa = PBXGroup;
+			children = (
+				ACB7C3A21B51C20800C90A78 /* PikMe_Tests.swift */,
+				ACB7C3A01B51C20800C90A78 /* Supporting Files */,
+			);
+			path = "PikMe Tests";
+			sourceTree = "<group>";
+		};
+		ACB7C3A01B51C20800C90A78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ACB7C3A11B51C20800C90A78 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -228,6 +290,24 @@
 			productReference = 81BA81451A49DA1800E65899 /* PikMe.app */;
 			productType = "com.apple.product-type.application";
 		};
+		ACB7C39D1B51C20800C90A78 /* PikMe Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACB7C3A81B51C20800C90A78 /* Build configuration list for PBXNativeTarget "PikMe Tests" */;
+			buildPhases = (
+				ACB7C39A1B51C20800C90A78 /* Sources */,
+				ACB7C39B1B51C20800C90A78 /* Frameworks */,
+				ACB7C39C1B51C20800C90A78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACB7C3A51B51C20800C90A78 /* PBXTargetDependency */,
+			);
+			name = "PikMe Tests";
+			productName = "PikMe Tests";
+			productReference = ACB7C39E1B51C20800C90A78 /* PikMe Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -239,6 +319,10 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					ACB7C39D1B51C20800C90A78 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 81BA81441A49DA1800E65899;
 					};
 				};
 			};
@@ -256,6 +340,7 @@
 			projectRoot = "";
 			targets = (
 				81BA81441A49DA1800E65899 /* PikMe */,
+				ACB7C39D1B51C20800C90A78 /* PikMe Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,6 +366,13 @@
 				7D67A0331B4ACB6C00FECAEE /* gear-7.png in Resources */,
 				81BA81501A49DA1800E65899 /* Main.storyboard in Resources */,
 				81BA81521A49DA1800E65899 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACB7C39C1B51C20800C90A78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +412,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ACB7C39A1B51C20800C90A78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACB7C3A91B52526900C90A78 /* Pik.swift in Sources */,
+				ACB7C3AA1B52527000C90A78 /* Cloud.swift in Sources */,
+				ACB7C3A31B51C20800C90A78 /* PikMe_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ACB7C3A51B51C20800C90A78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81BA81441A49DA1800E65899 /* PikMe */;
+			targetProxy = ACB7C3A41B51C20800C90A78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		81BA814E1A49DA1800E65899 /* Main.storyboard */ = {
@@ -439,11 +549,55 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = PikMe;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		ACB7C3A61B51C20800C90A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PikMe.app/PikMe";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PikMe Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		ACB7C3A71B51C20800C90A78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PikMe.app/PikMe";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "PikMe Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -467,6 +621,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		ACB7C3A81B51C20800C90A78 /* Build configuration list for PBXNativeTarget "PikMe Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACB7C3A61B51C20800C90A78 /* Debug */,
+				ACB7C3A71B51C20800C90A78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
