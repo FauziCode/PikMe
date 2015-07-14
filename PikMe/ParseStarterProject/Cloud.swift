@@ -66,6 +66,68 @@ public class Cloud
         }
     }
     
+    
+    //---------------------------------------------------------------------
+    //                              logOut
+    //---------------------------------------------------------------------
+    public class func logOut(callback: (succeded: Bool, msgError: String)->Void)
+    {
+        PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
+            
+            if let error = error
+            {
+                // KO
+                let errorString = error.userInfo?["error"] as! String
+                callback(succeded: false, msgError: errorString)
+            }
+            else
+            {
+                // OK
+                callback(succeded: true, msgError: "")
+            }
+            
+        }
+    }
+    //---------------------------------------------------------------------
+    //                              username
+    //---------------------------------------------------------------------
+    public class func username() -> String {
+        if let un = PFUser.currentUser()?.username {
+            return un
+        } else {
+            return ""
+        }
+    }
+    
+    //---------------------------------------------------------------------
+    //                          changePassword
+    //---------------------------------------------------------------------
+    public class func changePassword(newPassword: String, callback: (succeded: Bool, msgError: String)->Void)
+    {
+        if let cUser = PFUser.currentUser()
+        {
+            cUser.password = newPassword
+            cUser.saveInBackgroundWithBlock({ (succeded: Bool, error: NSError?) -> Void in
+                if let error = error
+                {
+                    // KO
+                    let errorString = error.userInfo?["error"] as! String
+                    callback(succeded: false, msgError: errorString)
+                }
+                else
+                {
+                    // OK
+                    callback(succeded: true, msgError: "")
+                }
+            })
+        }
+        else
+        {
+            callback(succeded: false, msgError: "Current User is NULL")
+        }
+    }
+
+    
     //---------------------------------------------------------------------
     //                              getPikList
     //---------------------------------------------------------------------
