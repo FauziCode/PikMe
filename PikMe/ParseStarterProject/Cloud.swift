@@ -80,7 +80,7 @@ public class Cloud
             if error == nil
             {
                 // The find succeeded.
-                println("Successfully retrieved \(objects!.count) scores.")
+                println("Successfully retrieved \(objects!.count)")
                 pikList = objects as! [Pik]
                 callback(piks: pikList, msgError: nil)
                 
@@ -92,6 +92,8 @@ public class Cloud
             }
         }
     }
+    
+    
     
     
 }
