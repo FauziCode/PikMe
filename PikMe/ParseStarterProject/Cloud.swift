@@ -15,12 +15,12 @@ import Parse
 //---------------------------------------------------------------------
 //                              CLOUD
 //---------------------------------------------------------------------
-class Cloud
+public class Cloud
 {
     //---------------------------------------------------------------------
     //                              logIn
     //---------------------------------------------------------------------
-    class func logIn(username: String, password: String, callback: (succeded: Bool, msgError: String)->Void)
+    public class func logIn(username: String, password: String, callback: (succeded: Bool, msgError: String)->Void)
     {
         PFUser.logInWithUsernameInBackground(username.lowercaseString, password:password)
         {
@@ -41,7 +41,7 @@ class Cloud
     //---------------------------------------------------------------------
     //                              signUp
     //---------------------------------------------------------------------
-    class func signUp(username: String, password: String, email: String, callback: (succeded: Bool, msgError: String)->Void)
+    public class func signUp(username: String, password: String, email: String, callback: (succeded: Bool, msgError: String)->Void)
     {
         var user = PFUser()
         
@@ -65,5 +65,95 @@ class Cloud
             }
         }
     }
+    
+    
+    //---------------------------------------------------------------------
+    //                              logOut
+    //---------------------------------------------------------------------
+    public class func logOut(callback: (succeded: Bool, msgError: String)->Void)
+    {
+        PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
+            
+            if let error = error
+            {
+                // KO
+                let errorString = error.userInfo?["error"] as! String
+                callback(succeded: false, msgError: errorString)
+            }
+            else
+            {
+                // OK
+                callback(succeded: true, msgError: "")
+            }
+            
+        }
+    }
+    //---------------------------------------------------------------------
+    //                              username
+    //---------------------------------------------------------------------
+    public class func username() -> String {
+        if let un = PFUser.currentUser()?.username {
+            return un
+        } else {
+            return ""
+        }
+    }
+    
+    //---------------------------------------------------------------------
+    //                          changePassword
+    //---------------------------------------------------------------------
+    public class func changePassword(newPassword: String, callback: (succeded: Bool, msgError: String)->Void)
+    {
+        if let cUser = PFUser.currentUser()
+        {
+            cUser.password = newPassword
+            cUser.saveInBackgroundWithBlock({ (succeded: Bool, error: NSError?) -> Void in
+                if let error = error
+                {
+                    // KO
+                    let errorString = error.userInfo?["error"] as! String
+                    callback(succeded: false, msgError: errorString)
+                }
+                else
+                {
+                    // OK
+                    callback(succeded: true, msgError: "")
+                }
+            })
+        }
+        else
+        {
+            callback(succeded: false, msgError: "Current User is NULL")
+        }
+    }
+
+    
+    //---------------------------------------------------------------------
+    //                              getPikList
+    //---------------------------------------------------------------------
+    public class func getPikList(maxPik:Int, callback: (piks : [Pik]?, msgError: String?)->Void ){
+        var pikList = [Pik]()
+        var query = Pik.query()
+        query!.limit = maxPik
+        
+        query!.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil
+            {
+                // The find succeeded.
+                println("Successfully retrieved \(objects!.count) scores.")
+                pikList = objects as! [Pik]
+                callback(piks: pikList, msgError: nil)
+                
+            } else
+            {
+                // Log details of the failure
+                println("Error: \(error!) \(error!.userInfo!)")
+                callback(piks: nil, msgError: "Error: \(error!) \(error!.userInfo!)")
+            }
+        }
+    }
+    
     
 }
