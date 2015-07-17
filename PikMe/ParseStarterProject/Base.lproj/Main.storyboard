@@ -373,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5f-XD-ikU" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="1024"/>
+            <point key="canvasLocation" x="234" y="1136"/>
         </scene>
         <!--Rank-->
         <scene sceneID="Szr-S6-Rqq">
