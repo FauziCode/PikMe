@@ -57,12 +57,22 @@ public class Pik: PFObject, PFSubclassing {
     
     }
     
+    //restutuisce vero se ho già flaggato like su questo Pik
+    public func alreadyLike()->Bool{
+        let query = queryWhoLikeMe()
+        query?.whereKey("objectId", equalTo: (PFUser.currentUser()?.valueForKey("objectId") as? String)!)
+        return query?.countObjects() > 0 ? true : false
+    }
+    
     //Chiamare questo metodo per incrementare il like relativo ad un Pik
     public func like(callback: (succeded: Bool, msgError: String?)->Void)
     {
         //la funzione incrementKey di PFObject incrementa una variabile numerica in modo atomico
         //per questo motivo chiamo anche la saveIn background...
         self.incrementKey("like")
+        let relation = self.relationForKey("likeUsers")
+        relation.addObject(PFUser.currentUser()!)
+    
         self.saveInBackgroundWithBlock {
             (succceded :Bool, error: NSError?) -> Void in
             if error != nil
@@ -83,6 +93,9 @@ public class Pik: PFObject, PFSubclassing {
     public func unlike(callback: (succeded: Bool, msgError: String?)->Void)
     {
         self.incrementKey("like", byAmount: -1)
+        let relation = self.relationForKey("likeUsers")
+        relation.removeObject(PFUser.currentUser()!)
+        
         self.saveInBackgroundWithBlock {
             (succceded :Bool, error: NSError?) -> Void in
             if error != nil
