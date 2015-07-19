@@ -31,10 +31,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginBtClick(sender:UIButton){
         
-        
         Cloud.logIn(userNameField.text, password: passwordField.text ,callback: callBacker)
-        
-        
         
     }
     

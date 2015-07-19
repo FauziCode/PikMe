@@ -22,7 +22,7 @@ public class Cloud
     //---------------------------------------------------------------------
     public class func logIn(username: String, password: String, callback: (succeded: Bool, msgError: String)->Void)
     {
-        PFUser.logInWithUsernameInBackground(username.lowercaseString, password:password)
+        PFUser.logInWithUsernameInBackground(username, password:password)
         {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil
