@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import Parse
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet var userNameField: UITextField!
+    
+    @IBOutlet var passwordField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,8 +27,25 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
+    
+    
+    @IBAction func onLoginBtClick(sender:UIButton){
+        
+        
+        Cloud.logIn(userNameField.text, password: passwordField.text ,callback: callBacker)
+        
+        
+        
+    }
+    
+    
+    func callBacker(succeded: Bool, msgError: String)->Void{
+        var alert = UIAlertController(title: "Login", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+ 
+        
+    }/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

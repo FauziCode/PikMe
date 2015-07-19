@@ -65,7 +65,7 @@ class FeedTableViewController: UITableViewController {
         
         var index = indexPath.row
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as ImageCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
 
         cell.nicknameLabel.text = elementList[index].username
         cell.photoImage.image = elementList[index].pic
