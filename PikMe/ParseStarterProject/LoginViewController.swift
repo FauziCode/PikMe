@@ -9,24 +9,42 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var userNameField: UITextField!
-    
     @IBOutlet var passwordField: UITextField!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        userNameField.delegate = self;
+        passwordField.delegate = self;
+        
+        //Used to dismiss the keyboard when press outside TextFields
+        let tapper = UITapGestureRecognizer(target: self, action: "handleSingleTap");
+        self.view.addGestureRecognizer(tapper);
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func handleSingleTap(){
+        
+        self.view.endEditing(true);
+    }
+    
+    // Dismiss the keyboard when press Return
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
     
     
     @IBAction func onLoginBtClick(sender:UIButton){
