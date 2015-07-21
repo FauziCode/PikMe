@@ -9,7 +9,7 @@
 import UIKit
 
 class Element: NSObject {
-    
+    /*commento di prova: lo vedete?*/
     var username : String = ""
     var pic : UIImage = UIImage()
     var likeN : Int = 0

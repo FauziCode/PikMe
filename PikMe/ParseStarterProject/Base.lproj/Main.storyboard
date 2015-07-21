@@ -94,7 +94,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="380"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DoH-UN-0gj" id="TfA-Q7-qX0">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sfondofoto.png" id="Kb2-05-LnX">
