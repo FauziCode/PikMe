@@ -9,7 +9,16 @@
 import UIKit
 
 class SignupViewController: UIViewController {
+    
 
+    @IBOutlet var usernameField: UITextField!
+   
+    @IBOutlet var mailField: UITextField!
+ 
+    @IBOutlet var passwordField: UITextField!
+    
+    @IBOutlet var confirmPwdField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +30,36 @@ class SignupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func onSingUpBtClick(sender:UIButton){
+        
+        if (passwordField.text != confirmPwdField.text){
+            
+            launchAlert("passwords do not match!")
+            
+        }
+        else {
+            Cloud.signUp(usernameField.text, password: passwordField.text, email: mailField.text, callback: callBacker)
+        
+        }
+        
+        
+        
+    }
+    
+    
+    func callBacker(succeded: Bool, msgError: String)->Void{
+      
+        launchAlert(msgError)
+        
+    }
+    
+    func launchAlert(msg:String)->Void{
+        var alert = UIAlertController(title: "Signup", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     /*
     // MARK: - Navigation
 
