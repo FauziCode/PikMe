@@ -49,15 +49,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onLoginBtClick(sender:UIButton){
         
-        Cloud.logIn(userNameField.text, password: passwordField.text ,callback: callBacker)
+        Cloud.logIn(userNameField.text, password: passwordField.text, callback: callBacker)
         
     }
     
     
     func callBacker(succeded: Bool, msgError: String)->Void{
-        var alert = UIAlertController(title: "Login", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        
+        if(msgError != "") { /*C'è un errore nel login*/
+            
+            var alert = UIAlertController(title: "Authentication Error", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            performSegueWithIdentifier("loginSegue", sender: self);
+        }
+        
+        
  
         
     }/*

@@ -95,7 +95,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })*/
         
-
+        
+        let currentUser = Cloud.username();
+        if(currentUser != "") { /*Utente già loggato, salto la schermata di login*/
+        
+//            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//            
+//            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            
+//            if let initialViewController = storyboard.instantiateViewControllerWithIdentifier("FeedTableViewController") as? UIViewController {
+//                
+//                self.window?.rootViewController = initialViewController
+//                self.window?.makeKeyAndVisible()
+//            }
+            
+            
+        }
         return true
     }
     

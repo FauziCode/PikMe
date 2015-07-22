@@ -75,6 +75,7 @@
                     <connections>
                         <outlet property="passwordField" destination="k5c-Z4-0x4" id="ucT-CO-zbK"/>
                         <outlet property="userNameField" destination="sD0-QP-Em9" id="D40-ht-MCA"/>
+                        <segue destination="egg-qX-Uqn" kind="custom" identifier="loginSegue" id="Yte-oo-vqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -84,17 +85,17 @@
         <!--Stream-->
         <scene sceneID="bLP-cf-yuj">
             <objects>
-                <tableViewController title="Stream" id="M8w-oG-Tma" customClass="FeedTableViewController" customModule="PikMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FeedTableViewController" title="Stream" id="M8w-oG-Tma" customClass="FeedTableViewController" customModule="PikMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="380" sectionHeaderHeight="22" sectionFooterHeight="22" id="tYc-CS-71m">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="PhotoCell" rowHeight="380" id="DoH-UN-0gj" customClass="ImageCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="320" height="380"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="380"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DoH-UN-0gj" id="TfA-Q7-qX0">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sfondofoto.png" id="Kb2-05-LnX">
