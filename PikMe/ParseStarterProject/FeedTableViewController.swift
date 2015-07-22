@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController {
+class FeedTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var elementList = [Element]()
     
@@ -25,7 +25,7 @@ class FeedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.edgesForExtendedLayout = UIRectEdge.All
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
@@ -48,6 +48,51 @@ class FeedTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    /*Take a photo*/
+    @IBAction func takePhoto(sender: UIButton) {
+        
+        var imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePickerController.allowsEditing = true
+            self.presentViewController(imagePickerController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    /*Select a photo from album*/
+    @IBAction func selectPhoto(sender: UIButton) {
+        
+        var imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePickerController.allowsEditing = true
+            self.presentViewController(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+    }
+        
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController)
+    {
+        NSLog("picker cancel.")
+        picker.dismissViewControllerAnimated(true, completion: nil)
+
+    }
+    
+    
+    
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
