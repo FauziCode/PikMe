@@ -36,14 +36,14 @@
                                 <accessibility key="accessibilityConfiguration" label="username"/>
                                 <color key="textColor" red="0.20784313725490197" green="0.44705882352941179" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" id="k5c-Z4-0x4">
                                 <rect key="frame" x="44" y="267" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.20784313725490197" green="0.44705882352941179" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dti-vU-GfM">
                                 <rect key="frame" x="110" y="538" width="100" height="30"/>
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNo-El-1YP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1560" y="673"/>
+            <point key="canvasLocation" x="1560" y="678"/>
         </scene>
         <!--User profile-->
         <scene sceneID="kgx-NF-iqb">
@@ -273,7 +273,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="hgx-0B-fF8">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="egg-qX-Uqn" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="egg-qX-Uqn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kIL-6K-a2R"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -433,6 +433,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="76e-hy-wwd"/>
+        <segue reference="fnX-Pz-4z2"/>
     </inferredMetricsTieBreakers>
 </document>

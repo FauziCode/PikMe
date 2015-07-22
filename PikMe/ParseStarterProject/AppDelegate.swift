@@ -79,6 +79,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotificationTypes(types)
         }
         
+        let currentUser = Cloud.username();
+        if(currentUser != "") { /*Utente già loggato, salto la schermata di login*/
+            
+            // get your storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            // instantiate your desired ViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("tabBarController") as! UITabBarController
+            
+            // Because self.window is an optional you should check it's value first and assign your rootViewController
+            if self.window != nil {
+                self.window!.rootViewController = rootController
+                self.window!.makeKeyAndVisible()
+            }
+        }
+        
         /*
         LP30-06-2015
         
@@ -94,23 +110,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println("KO")
             }
         })*/
-        
-        
-        let currentUser = Cloud.username();
-        if(currentUser != "") { /*Utente già loggato, salto la schermata di login*/
-        
-//            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//            
-//            var storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            
-//            if let initialViewController = storyboard.instantiateViewControllerWithIdentifier("FeedTableViewController") as? UIViewController {
-//                
-//                self.window?.rootViewController = initialViewController
-//                self.window?.makeKeyAndVisible()
-//            }
-            
-            
-        }
         return true
     }
     
