@@ -190,6 +190,9 @@
                             </subviews>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnUsername" destination="F5x-ch-FGI" id="ka9-xy-3GE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7D-nR-0FU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
