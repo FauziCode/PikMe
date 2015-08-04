@@ -172,6 +172,17 @@ public class Pik: PFObject, PFSubclassing {
     {
         super.init()
         self.user = PFUser.currentUser()!
+        
+        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.5, 0.5))
+        let hasAlpha = false
+        let scale: CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(size, hasAlpha, scale)
+        image.drawInRect(CGRect(origin: CGPointZero, size: size))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
         let pictureData = UIImagePNGRepresentation(image)
         self.imageFile = PFFile(name: "image", data: pictureData)
         
@@ -181,6 +192,7 @@ public class Pik: PFObject, PFSubclassing {
         // o no
         //self.like = 0;
     }
+    
     
     //costruttore vuoto
     public override init()
