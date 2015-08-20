@@ -15,6 +15,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     var elementList = [Element]()
     
+    
 //    func initializeList(){
 //        for (var i = 0; i < 6 ; i++){
 //            var el = Element()
@@ -53,7 +54,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     /*Take a photo*/
     @IBAction func takePhoto(sender: UIButton) {
