@@ -173,7 +173,7 @@ public class Pik: PFObject, PFSubclassing {
         super.init()
         self.user = PFUser.currentUser()!
         
-        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.5, 0.5))
+        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.26, 0.26))
         let hasAlpha = false
         let scale: CGFloat = 0.0
         
