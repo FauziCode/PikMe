@@ -10,18 +10,21 @@ import UIKit
 
 class FeedTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    
+    @IBOutlet weak var btnUsername: UIButton!
+    
     var elementList = [Element]()
     
-    func initializeList(){
-        for (var i = 0; i < 6 ; i++){
-            var el = Element()
-            el.likeN = Int(arc4random_uniform(50))
-            el.username = "user_" + String(i)
-            var imgname = "pic01.jpg"
-            el.pic = UIImage(named: imgname)!
-            elementList.append(el)
-        }
-    }
+//    func initializeList(){
+//        for (var i = 0; i < 6 ; i++){
+//            var el = Element()
+//            el.likeN = Int(arc4random_uniform(50))
+//            el.username = "user_" + String(i)
+//            var imgname = "pic01.jpg"
+//            el.pic = UIImage(named: imgname)!
+//            elementList.append(el)
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +33,14 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
 
+        let username = Cloud.username()
+        self.btnUsername.setTitle(username, forState: UIControlState.Normal)
+        
         
         //        self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     //}
         
-        initializeList()
+//        initializeList()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -75,12 +81,35 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     }
     
     
-    
+    /*Choose the photo*/
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
+        let img = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        /*Creo il pik*/
+        let myPik = Pik(image:img)
+        
+        /*Salvo il pik in cloud*/
+        myPik.saveInBackgroundWithBlock {(ok:Bool, error: NSError?) -> Void in
+            if error != nil
+            {
+                var alert = UIAlertController(title: "Network error", message: "Unable to saving the photo", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            }
+            else
+            {
+                var el = Element()
+                el.likeN = 0
+                el.username = "user_"
+                el.pic = img
+                self.elementList.append(el)
+                self.tableView.reloadData()
+            }
+        }
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
         
-    
+    /*Cancel*/
     func imagePickerControllerDidCancel(picker: UIImagePickerController)
     {
         NSLog("picker cancel.")

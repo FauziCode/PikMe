@@ -49,6 +49,9 @@ public class Pik: PFObject, PFSubclassing {
     }
     
     //chi mi ha votato?
+    //---------------------------------------------------------------------
+    //                           queryWhoLikeMe
+    //---------------------------------------------------------------------
     public func queryWhoLikeMe() -> PFQuery?{
         
         let relation = self.relationForKey("likeUsers")
@@ -57,7 +60,37 @@ public class Pik: PFObject, PFSubclassing {
     
     }
     
+    //restituisce l'elenco dei pfuser che mi hanno votato
+    //---------------------------------------------------------------------
+    //                           whoLikeMe
+    //---------------------------------------------------------------------
+    public func whoLikeMe(callback: (users: [PFUser]?, msgError: String?)->Void)
+    {
+        let query = queryWhoLikeMe()
+        query?.findObjectsInBackgroundWithBlock({ (users: [AnyObject]?, error: NSError?) in
+            if error == nil
+            {
+                // The find succeeded.
+                println("Successfully retrieved \(users!.count)")
+                let userlist = users as! [PFUser]
+                callback(users: userlist, msgError: nil)
+                
+            } else
+            {
+                // Log details of the failure
+                println("Error: \(error!) \(error!.userInfo!)")
+                callback(users: nil, msgError:  "Error: \(error!) \(error!.userInfo!)")
+            }
+        })
+        return
+    }
+    
+    
+    
     //restutuisce vero se ho già flaggato like su questo Pik
+    //---------------------------------------------------------------------
+    //                           alreadyLike
+    //---------------------------------------------------------------------
     public func alreadyLike()->Bool{
         let query = queryWhoLikeMe()
         query?.whereKey("objectId", equalTo: (PFUser.currentUser()?.valueForKey("objectId") as? String)!)
@@ -65,6 +98,9 @@ public class Pik: PFObject, PFSubclassing {
     }
     
     //Chiamare questo metodo per incrementare il like relativo ad un Pik
+    //---------------------------------------------------------------------
+    //                           like
+    //---------------------------------------------------------------------
     public func like(callback: (succeded: Bool, msgError: String?)->Void)
     {
         //la funzione incrementKey di PFObject incrementa una variabile numerica in modo atomico
@@ -90,6 +126,9 @@ public class Pik: PFObject, PFSubclassing {
     }
     
     //Chiamare questo metodo per decrementare il like relativo ad un Pik
+    //---------------------------------------------------------------------
+    //                           unlike
+    //---------------------------------------------------------------------
     public func unlike(callback: (succeded: Bool, msgError: String?)->Void)
     {
         self.incrementKey("like", byAmount: -1)
@@ -113,6 +152,10 @@ public class Pik: PFObject, PFSubclassing {
 
     }
     
+    //Chiamare questo metodo per scaricare la foto relativa ad un pik
+    //---------------------------------------------------------------------
+    //                           getImage
+    //---------------------------------------------------------------------
     public func getImage(callback: (image: UIImage?, msgError: String?)->Void){
         self.imageFile.getDataInBackgroundWithBlock { (dati, error) -> Void in
             if error != nil {
@@ -129,7 +172,19 @@ public class Pik: PFObject, PFSubclassing {
     {
         super.init()
         self.user = PFUser.currentUser()!
-        let pictureData = UIImagePNGRepresentation(image)
+        
+        let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.26, 0.26))
+        let hasAlpha = false
+        let scale: CGFloat = 0.0
+        let compression: CGFloat = 0.5
+        
+        UIGraphicsBeginImageContextWithOptions(size, hasAlpha, scale)
+        image.drawInRect(CGRect(origin: CGPointZero, size: size))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let pictureData = UIImageJPEGRepresentation(image, compression)
         self.imageFile = PFFile(name: "image", data: pictureData)
         
         
@@ -138,6 +193,7 @@ public class Pik: PFObject, PFSubclassing {
         // o no
         //self.like = 0;
     }
+    
     
     //costruttore vuoto
     public override init()

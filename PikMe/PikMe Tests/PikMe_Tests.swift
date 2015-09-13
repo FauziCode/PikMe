@@ -52,32 +52,22 @@ class PikMe_Tests: XCTestCase {
                             }
                             expectation.fulfill()
                         }
-                        
                     }else{
                         XCTFail("non ricevo nulla dal server")
                     }
-                    
-                    
                     expectation.fulfill()
                 })
-                
-                
-                
-                
-                
             }
             expectation.fulfill()
         }
         
         //se entro 10 secondi non ho concluso il test fallisce
-        waitForExpectationsWithTimeout(10.0,handler:nil)
-        
+        waitForExpectationsWithTimeout(30.0,handler:nil)
     }
     
     
     func testPerformanceExample() {
         self.measureBlock() {
-            
         }
     }
     
