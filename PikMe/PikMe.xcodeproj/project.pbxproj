@@ -10,6 +10,7 @@
 		7D1046A21B4AFB5F0005BF49 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */; };
 		7D1046A41B4AFE9A0005BF49 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1046A31B4AFE9A0005BF49 /* Icon-Small.png */; };
 		7D1046A61B4B02550005BF49 /* guysmartphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D1046A51B4B02550005BF49 /* guysmartphone.jpg */; };
+		7D30B0521BA5DAF10077E358 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30B0511BA5DAF10077E358 /* RankViewController.swift */; };
 		7D4013B61B45279200141456 /* logoPikMe_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4013B51B45279200141456 /* logoPikMe_03.png */; };
 		7D67A02D1B4AC3B500FECAEE /* starrynight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DECAEB61B4975970061559E /* starrynight.ttf */; };
 		7D67A0331B4ACB6C00FECAEE /* gear-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67A0321B4ACB6C00FECAEE /* gear-7.png */; };
@@ -20,6 +21,8 @@
 		7D67A03F1B4ADE4A00FECAEE /* photo-7_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67A03E1B4ADE4A00FECAEE /* photo-7_pink.png */; };
 		7D67A0411B4AE06600FECAEE /* gear-7_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D67A0401B4AE06600FECAEE /* gear-7_green.png */; };
 		7D70AF7D1B3EEB230073EF3B /* teen-girl-with-smartphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D70AF7C1B3EEB230073EF3B /* teen-girl-with-smartphone.jpg */; };
+		7D7851F81BA744C200C31ECC /* RankElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7851F71BA744C200C31ECC /* RankElement.swift */; };
+		7D7851FA1BA746BE00C31ECC /* RankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7851F91BA746BE00C31ECC /* RankCell.swift */; };
 		7DECAEB31B4941AD0061559E /* sfondofoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DECAEB21B4941AD0061559E /* sfondofoto.png */; };
 		7DECAEB51B49488C0061559E /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DECAEB41B49488C0061559E /* icon_like.png */; };
 		7DECAEBB1B4979790061559E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DECAEBA1B4979790061559E /* ImageCell.swift */; };
@@ -71,6 +74,7 @@
 		7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		7D1046A31B4AFE9A0005BF49 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		7D1046A51B4B02550005BF49 /* guysmartphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guysmartphone.jpg; sourceTree = "<group>"; };
+		7D30B0511BA5DAF10077E358 /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		7D4013B51B45279200141456 /* logoPikMe_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoPikMe_03.png; sourceTree = "<group>"; };
 		7D67A0321B4ACB6C00FECAEE /* gear-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7.png"; sourceTree = "<group>"; };
 		7D67A0341B4ACEA600FECAEE /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		7D67A03E1B4ADE4A00FECAEE /* photo-7_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-7_pink.png"; sourceTree = "<group>"; };
 		7D67A0401B4AE06600FECAEE /* gear-7_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7_green.png"; sourceTree = "<group>"; };
 		7D70AF7C1B3EEB230073EF3B /* teen-girl-with-smartphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "teen-girl-with-smartphone.jpg"; sourceTree = "<group>"; };
+		7D7851F71BA744C200C31ECC /* RankElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankElement.swift; sourceTree = "<group>"; };
+		7D7851F91BA746BE00C31ECC /* RankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankCell.swift; sourceTree = "<group>"; };
 		7DECAEB21B4941AD0061559E /* sfondofoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sfondofoto.png; sourceTree = "<group>"; };
 		7DECAEB41B49488C0061559E /* icon_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_like.png; sourceTree = "<group>"; };
 		7DECAEB61B4975970061559E /* starrynight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = starrynight.ttf; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 			children = (
 				812E67EA1B41D83800C0B987 /* Parse */,
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
+				7D7851F71BA744C200C31ECC /* RankElement.swift */,
 				81BA814E1A49DA1800E65899 /* Main.storyboard */,
 				81BA81511A49DA1800E65899 /* Images.xcassets */,
 				81BA81481A49DA1800E65899 /* Supporting Files */,
@@ -213,6 +220,8 @@
 				7DECBFBD1B49BE5700C86243 /* Element.swift */,
 				7D67A0341B4ACEA600FECAEE /* SignupViewController.swift */,
 				7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */,
+				7D30B0511BA5DAF10077E358 /* RankViewController.swift */,
+				7D7851F91BA746BE00C31ECC /* RankCell.swift */,
 			);
 			name = PikMe;
 			path = ParseStarterProject;
@@ -401,14 +410,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D30B0521BA5DAF10077E358 /* RankViewController.swift in Sources */,
 				7D1046A21B4AFB5F0005BF49 /* ProfileTableViewController.swift in Sources */,
 				7D67A0351B4ACEA600FECAEE /* SignupViewController.swift in Sources */,
 				7DEEBAD31B4184E600E0F7C9 /* LoginViewController.swift in Sources */,
 				AC6E6E5A1B4BB30900F16121 /* Pik.swift in Sources */,
+				7D7851FA1BA746BE00C31ECC /* RankCell.swift in Sources */,
 				7DECAEBB1B4979790061559E /* ImageCell.swift in Sources */,
 				7DECAEBD1B4980E50061559E /* FeedTableViewController.swift in Sources */,
 				AC6E6E581B4BB2CB00F16121 /* Cloud.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
+				7D7851F81BA744C200C31ECC /* RankElement.swift in Sources */,
 				7DECBFBE1B49BE5700C86243 /* Element.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
