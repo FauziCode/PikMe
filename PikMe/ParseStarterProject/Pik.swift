@@ -176,6 +176,7 @@ public class Pik: PFObject, PFSubclassing {
         let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.26, 0.26))
         let hasAlpha = false
         let scale: CGFloat = 0.0
+        let compression: CGFloat = 0.5
         
         UIGraphicsBeginImageContextWithOptions(size, hasAlpha, scale)
         image.drawInRect(CGRect(origin: CGPointZero, size: size))
@@ -183,7 +184,7 @@ public class Pik: PFObject, PFSubclassing {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let pictureData = UIImagePNGRepresentation(image)
+        let pictureData = UIImageJPEGRepresentation(image, compression)
         self.imageFile = PFFile(name: "image", data: pictureData)
         
         
