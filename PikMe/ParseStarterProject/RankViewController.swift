@@ -45,7 +45,6 @@ class RankViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elementList.count
-        return 0
     }
 
     

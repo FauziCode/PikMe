@@ -13,6 +13,7 @@
             <string>StarryNight-Regular</string>
             <string>StarryNight-Regular</string>
             <string>StarryNight-Regular</string>
+            <string>StarryNight-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -94,7 +95,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="PhotoCell" rowHeight="380" id="DoH-UN-0gj" customClass="ImageCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="320" height="380"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="380"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DoH-UN-0gj" id="TfA-Q7-qX0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
@@ -186,7 +187,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="hja-vE-EEs" kind="push" id="76e-hy-wwd"/>
+                                        <segue destination="ocw-AR-Qbl" kind="push" id="LGC-rb-NdH"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -203,7 +204,6 @@
         <!--Rank-->
         <scene sceneID="TSj-Vx-Q3T">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e4U-LM-DAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Rank" id="BUf-EL-ihn" customClass="RankViewController" customModule="PikMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O3i-DG-GAe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -211,7 +211,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RankCell" id="m0v-vk-QYV" customClass="RankCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0v-vk-QYV" id="yIR-ch-ZCU">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -225,7 +225,7 @@
                                             <rect key="frame" x="17" y="11" width="27" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ggt-Id-CAb">
@@ -239,7 +239,7 @@
                                             <rect key="frame" x="63" y="11" width="67" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -256,42 +256,101 @@
                             <outlet property="delegate" destination="BUf-EL-ihn" id="noV-cv-T89"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Su2-r2-eGC"/>
+                    <navigationItem key="navigationItem" id="Su2-r2-eGC">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="ORu-ka-moV">
+                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FFq-vu-blP">
+                                    <rect key="frame" x="206" y="0.0" width="90" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="13"/>
+                                    <state key="normal" title="username">
+                                        <color key="titleColor" red="0.20392156859999999" green="0.41176470590000003" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="ocw-AR-Qbl" kind="push" id="Ha6-Tj-s6w"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                    </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e4U-LM-DAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1560" y="678"/>
         </scene>
         <!--User profile-->
-        <scene sceneID="kgx-NF-iqb">
+        <scene sceneID="5lI-v4-Bky">
             <objects>
-                <viewController title="User profile" hidesBottomBarWhenPushed="YES" id="hja-vE-EEs" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="78T-TK-zxL">
-                        <rect key="frame" x="0.0" y="94" width="320" height="568"/>
+                <collectionViewController title="User profile" hidesBottomBarWhenPushed="YES" id="ocw-AR-Qbl" customClass="ProfileViewController" customModule="PikMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Q9w-nH-fWR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZiB-Nw-c0l">
-                                <rect key="frame" x="35" y="69" width="250" height="37"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HNE-XP-Xni">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCell" id="a79-gh-dnL" customClass="ProfileCell" customModule="PikMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="26"/>
-                                <color key="textColor" red="0.20392156859999999" green="0.41176470590000003" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Guj-hj-GBV">
-                                <rect key="frame" x="255" y="73" width="55" height="30"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="bTY-rw-eBe">
+                                            <rect key="frame" x="9" y="9" width="83" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <size key="customSize" width="100" height="100"/>
+                                <connections>
+                                    <outlet property="PersonalImage" destination="bTY-rw-eBe" id="dJ4-RL-BFu"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ocw-AR-Qbl" id="eIm-Ef-zbi"/>
+                            <outlet property="delegate" destination="ocw-AR-Qbl" id="gtT-bw-GjI"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="MIP-aT-xZJ">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="CZO-o4-QwQ">
+                            <rect key="frame" x="84" y="8" width="153" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZiB-Nw-c0l">
+                                    <rect key="frame" x="0.0" y="0.0" width="154" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="20"/>
+                                    <color key="textColor" red="0.20392156859999999" green="0.41176470590000003" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="wLA-HD-PRC">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AB1-VX-uyJ">
+                                <rect key="frame" x="255" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log-out">
+                                <state key="normal" title="Logout">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="FUN-og-N9i"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sre-mr-K6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TjE-Sk-wol" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1998" y="370"/>
+            <point key="canvasLocation" x="1996" y="349"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hgx-0B-fF8">
@@ -455,4 +514,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="LGC-rb-NdH"/>
+    </inferredMetricsTieBreakers>
 </document>
