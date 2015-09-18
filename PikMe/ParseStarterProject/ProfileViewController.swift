@@ -62,14 +62,14 @@ class ProfileViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
     
         var index = indexPath.row
 //        var image = profileElementList[index].image
         
         // Configure the cell
-//        cell.PersonalImage.image = profileElementList[index].image
-        cell.backgroundView = UIImageView(image: UIImage(named:"pic01.jpg"))
+        cell.PersonalImage.image = profileElementList[index].image
+//        cell.backgroundView = UIImageView(image: UIImage(named:"pic01.jpg"))
         return cell
     }
 

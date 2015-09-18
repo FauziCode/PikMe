@@ -14,6 +14,7 @@ class RankCell: UITableViewCell {
     @IBOutlet var UsernameLabel: UILabel!
     @IBOutlet var LikeNumberLabel: UILabel!
     
+    @IBOutlet var Thumbnail: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
