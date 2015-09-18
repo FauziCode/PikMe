@@ -220,7 +220,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_like.png" id="3el-Cn-5A6">
-                                            <rect key="frame" x="228" y="3" width="32" height="32"/>
+                                            <rect key="frame" x="211" y="3" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TqB-L7-ukw">
@@ -231,7 +231,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ggt-Id-CAb">
-                                            <rect key="frame" x="262" y="8" width="39" height="29"/>
+                                            <rect key="frame" x="243" y="8" width="39" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="21"/>
                                             <color key="textColor" red="0.90196078430000004" green="0.42352941179999998" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -320,6 +320,9 @@
                                         <state key="normal" backgroundImage="button_like_unpressed.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onLikePressed:" destination="tWo-YY-EGK" eventType="touchUpInside" id="vLe-Fq-yfP"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L2q-wX-eXa">
                                         <rect key="frame" x="35" y="8" width="110" height="21"/>
@@ -344,10 +347,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="82S-yU-ynL"/>
+                    <connections>
+                        <outlet property="NLikeLabel" destination="UQ1-vU-gvi" id="dqW-op-rj1"/>
+                        <outlet property="PhotoImageView" destination="N8d-GD-v2M" id="J9S-GD-Di0"/>
+                        <outlet property="UsernameLabel" destination="L2q-wX-eXa" id="j39-MB-758"/>
+                        <outlet property="likeButton" destination="CpW-8n-Qwt" id="5d0-pw-FFx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcX-tF-ZwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="1003"/>
+            <point key="canvasLocation" x="1996" y="1026"/>
         </scene>
         <!--User profile-->
         <scene sceneID="5lI-v4-Bky">
@@ -381,6 +390,7 @@
                                 <size key="customSize" width="100" height="100"/>
                                 <connections>
                                     <outlet property="PersonalImage" destination="bTY-rw-eBe" id="dJ4-RL-BFu"/>
+                                    <segue destination="tWo-YY-EGK" kind="push" id="BRI-0P-lsH"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -582,6 +592,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ha6-Tj-s6w"/>
+        <segue reference="FtB-2J-ih3"/>
+        <segue reference="LGC-rb-NdH"/>
     </inferredMetricsTieBreakers>
 </document>

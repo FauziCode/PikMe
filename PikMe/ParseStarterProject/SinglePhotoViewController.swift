@@ -10,6 +10,26 @@ import UIKit
 
 class SinglePhotoViewController: UIViewController {
 
+    @IBOutlet var UsernameLabel: UILabel!
+    @IBOutlet var PhotoImageView: UIImageView!
+    
+    @IBOutlet var NLikeLabel: UILabel!
+    
+    @IBOutlet var likeButton: UIButton!
+    
+    var likeButtonPressed : Bool = false
+    
+    @IBAction func onLikePressed(sender: AnyObject) {
+        toggleLikeButton()
+        /*other stuffs here...*/
+    }
+    
+    func toggleLikeButton(){
+        likeButtonPressed = !likeButtonPressed
+        likeButtonPressed ? likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil) : likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
