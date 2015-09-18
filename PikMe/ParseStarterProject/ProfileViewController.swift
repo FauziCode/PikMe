@@ -54,7 +54,10 @@ class ProfileViewController: UICollectionViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            performSegueWithIdentifier("logoutSegue", sender: self);
+            //performSegueWithIdentifier("logoutSegue", sender: self);
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+            self.presentViewController(vc, animated: true, completion: nil)
         }
     }
     
