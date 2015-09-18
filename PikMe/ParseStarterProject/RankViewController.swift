@@ -20,6 +20,8 @@ class RankViewController: UITableViewController {
             el.position = i
             el.username = "user_" + String(i)
             el.totLikeN = i * 5
+            el.thumb = UIImage(named: "pic01.jpg")!
+            
             elementList.append(el)
         }
 
@@ -45,7 +47,6 @@ class RankViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elementList.count
-        return 0
     }
 
     
@@ -55,9 +56,16 @@ class RankViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("RankCell", forIndexPath: indexPath) as! RankCell
 
+       
+        var position =  elementList[index].position
+         var positionText = String(position) + "."
+        if (position < 10){
+            positionText = "0" + positionText
+        }
         cell.UsernameLabel.text = elementList[index].username
-        cell.RankLabel.text = String(elementList[index].position)
+        cell.RankLabel.text = positionText
         cell.LikeNumberLabel.text = String(elementList[index].totLikeN)
+        cell.Thumbnail.image = elementList[index].thumb
 
         return cell
     }

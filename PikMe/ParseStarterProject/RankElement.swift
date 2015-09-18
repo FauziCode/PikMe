@@ -13,4 +13,5 @@ class RankElement: NSObject {
     var username : String = ""
     var totLikeN : Int = 0
     var position : Int = 0
+    var thumb : UIImage = UIImage()
 }
