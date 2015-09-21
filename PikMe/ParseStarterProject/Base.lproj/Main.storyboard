@@ -160,16 +160,6 @@
                             <rect key="frame" x="8" y="7.5" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hoo-Dk-oYv">
-                                    <rect key="frame" x="120" y="0.0" width="37" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="photo-7_pink.png">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="selectPhoto:" destination="M8w-oG-Tma" eventType="touchUpInside" id="GRR-rL-nT4"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V3C-Va-48b">
                                     <rect key="frame" x="161" y="0.0" width="30" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -190,6 +180,16 @@
                                     </state>
                                     <connections>
                                         <segue destination="ocw-AR-Qbl" kind="push" id="LGC-rb-NdH"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hoo-Dk-oYv">
+                                    <rect key="frame" x="116" y="0.0" width="37" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="photo-7_pink.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectPhoto:" destination="M8w-oG-Tma" eventType="touchUpInside" id="GRR-rL-nT4"/>
                                     </connections>
                                 </button>
                             </subviews>

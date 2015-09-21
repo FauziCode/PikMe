@@ -13,6 +13,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     @IBOutlet weak var btnUsername: UIButton!
     
+    let username = Cloud.username()
     var elementList = [Element]()
     
     
@@ -34,8 +35,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
 
-        let username = Cloud.username()
-        self.btnUsername.setTitle(username, forState: UIControlState.Normal)
+        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
         
         
         //        self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
@@ -99,8 +99,8 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             else
             {
                 var el = Element()
-                el.likeN = 0
-                el.username = "user_"
+                el.likeN = myPik.like;
+                el.username = self.username;
                 el.pic = img
                 self.elementList.append(el)
                 self.tableView.reloadData()
