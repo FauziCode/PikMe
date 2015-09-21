@@ -14,19 +14,9 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var btnUsername: UIButton!
     
     let username = Cloud.username()
+    var pikList = [Pik]()
     var elementList = [Element]()
     
-    
-//    func initializeList(){
-//        for (var i = 0; i < 6 ; i++){
-//            var el = Element()
-//            el.likeN = Int(arc4random_uniform(50))
-//            el.username = "user_" + String(i)
-//            var imgname = "pic01.jpg"
-//            el.pic = UIImage(named: imgname)!
-//            elementList.append(el)
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +27,11 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
 
         self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
         
+        initializeList()
+        
         
         //        self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     //}
-        
-//        initializeList()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -53,6 +43,35 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func initializeList(){
+//        for (var i = 0; i < 6 ; i++){
+//            var el = Element()
+//            el.likeN = Int(arc4random_uniform(50))
+//            el.username = "user_" + String(i)
+//            var imgname = "pic01.jpg"
+//            el.pic = UIImage(named: imgname)!
+//            elementList.append(el)
+//        }
+        Cloud.getPikList(10, callback: callBacker)
+    }
+    
+    func callBacker(piks : [Pik]?, msgError: String?) -> Void {
+        
+        if(msgError != nil) { /*C'è un errore*/
+            var alert = UIAlertController(title: "Generic Error", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            self.pikList = piks!
+            var el = Element()
+            el.likeN = self.pikList[0].like
+            el.username = self.pikList[0].user.username!
+            println(el.username)
+        }
     }
     
     /*Take a photo*/
@@ -118,6 +137,14 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     }
     
     
+    @IBAction func btnLikeTapped(sender: AnyObject) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! ImageCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        var index = indexPath!.row
+    }
     
     
     

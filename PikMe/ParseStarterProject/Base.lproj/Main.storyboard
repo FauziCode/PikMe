@@ -107,14 +107,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="313"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ndz-kL-rVn">
-                                            <rect key="frame" x="259" y="300" width="32" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" backgroundImage="button_like_unpressed.png"/>
-                                            <connections>
-                                                <action selector="onLikePressed:" destination="DoH-UN-0gj" eventType="touchUpInside" id="BZ0-Pc-TdA"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DLT-bq-Bw9">
                                             <rect key="frame" x="55" y="305" width="41" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -139,6 +131,15 @@
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ndz-kL-rVn">
+                                            <rect key="frame" x="259" y="300" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="button_like_unpressed.png"/>
+                                            <connections>
+                                                <action selector="btnLikeTapped:" destination="M8w-oG-Tma" eventType="touchUpInside" id="ZEX-aP-zzD"/>
+                                                <action selector="onLikePressed:" destination="DoH-UN-0gj" eventType="touchUpInside" id="BZ0-Pc-TdA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
