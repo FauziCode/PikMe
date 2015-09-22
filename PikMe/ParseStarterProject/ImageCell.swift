@@ -19,7 +19,6 @@ class ImageCell: UITableViewCell {
     
     @IBAction func onLikePressed(sender: AnyObject) {
         toggleLikeButton()
-        /*other stuffs here...*/
     }
     
     func toggleLikeButton(){

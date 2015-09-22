@@ -37,6 +37,30 @@ class ProfileViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func onLogoutBtClick(sender: AnyObject) {
+        
+        Cloud.logOut(callBacker);
+    }
+    
+    func callBacker(succeded: Bool, msgError: String)->Void{
+        
+        if(msgError != "") { /*C'è un errore nel logout*/
+            
+            var alert = UIAlertController(title: "Logout Error", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            //performSegueWithIdentifier("logoutSegue", sender: self);
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+    
 
     /*
     // MARK: - Navigation

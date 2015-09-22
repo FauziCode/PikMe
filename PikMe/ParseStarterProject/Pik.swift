@@ -189,9 +189,9 @@ public class Pik: PFObject, PFSubclassing {
         
         
         //credo che la mia foto piaccia almeno a me stesso
-        self.like = 1;
+        //self.like = 1;
         // o no
-        //self.like = 0;
+        self.like = 0;
     }
     
     
