@@ -23,7 +23,21 @@ class ImageCell: UITableViewCell {
     
     func toggleLikeButton(){
         likeButtonPressed = !likeButtonPressed
-        likeButtonPressed ? likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil) : likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+        if(likeButtonPressed) {
+            likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+            
+            var nLike = self.likeCounterLabel.text?.toInt()
+            nLike!++
+            self.likeCounterLabel.text = String(nLike!)
+        }
+        else {
+            likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+            var nLike = self.likeCounterLabel.text?.toInt()
+            if(nLike > 0) {
+                nLike!--
+            }
+            self.likeCounterLabel.text = String(nLike!)
+        }
     }
     
     override func awakeFromNib() {

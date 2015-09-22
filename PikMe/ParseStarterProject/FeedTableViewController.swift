@@ -46,15 +46,8 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     }
     
     func initializeList(){
-//        for (var i = 0; i < 6 ; i++){
-//            var el = Element()
-//            el.likeN = Int(arc4random_uniform(50))
-//            el.username = "user_" + String(i)
-//            var imgname = "pic01.jpg"
-//            el.pic = UIImage(named: imgname)!
-//            elementList.append(el)
-//        }
-        Cloud.getPikList(10, callback: callBacker)
+        
+        Cloud.getPikList(100, callback: callBacker)
     }
     
     func callBacker(piks : [Pik]?, msgError: String?) -> Void {
@@ -67,10 +60,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         }
         else {
             self.pikList = piks!
-            var el = Element()
-            el.likeN = self.pikList[0].like
-            el.username = self.pikList[0].user.username!
-            println(el.username)
+            self.tableView.reloadData()
         }
     }
     
@@ -117,11 +107,12 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             }
             else
             {
-                var el = Element()
-                el.likeN = myPik.like;
-                el.username = self.username;
-                el.pic = img
-                self.elementList.append(el)
+//              var el = Element()
+//              el.likeN = myPik.like;
+//              el.username = self.username;
+//              el.pic = img
+//              self.elementList.append(el)
+                self.pikList.append(myPik)
                 self.tableView.reloadData()
             }
         }
@@ -144,8 +135,22 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let cell = view.superview as! ImageCell
         let indexPath = self.tableView.indexPathForCell(cell)
         var index = indexPath!.row
+        
+        if(self.pikList[index].alreadyLike()) { /*C'è già il like*/
+            self.pikList[index].unlike({ (succeded: Bool, msgError: String?)->Void in
+                if(msgError == nil) {
+                    self.pikList[index].like--;
+                }
+            })
+        }
+        else { /*Non c'è il like*/
+            self.pikList[index].like({ (succeded: Bool, msgError: String?)->Void in
+                if(msgError == nil) {
+                    self.pikList[index].like++;
+                }
+            })
+        }
     }
-    
     
     
     
@@ -158,24 +163,29 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elementList.count
+        return self.pikList.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var index = indexPath.row
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
-
-        cell.nicknameLabel.text = elementList[index].username
-        cell.photoImage.image = elementList[index].pic
-        cell.likeCounterLabel.text = String(elementList[index].likeN)
+        
+        cell.nicknameLabel.text = self.pikList[index].user.username
+        self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
+            if(msgError == nil) {
+                cell.photoImage.image = image
+            }
+            else {
+                
+            }
+        })
+        cell.likeCounterLabel.text = String(self.pikList[index].like)
         
         return cell
     }
     
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
