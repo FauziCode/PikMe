@@ -131,7 +131,7 @@ public class Pik: PFObject, PFSubclassing {
     //---------------------------------------------------------------------
     public func unlike(callback: (succeded: Bool, msgError: String?)->Void)
     {
-        self.incrementKey("like", byAmount: -1)
+        self.incrementKey("like", byAmount: NSNumber(int: -1))
         let relation = self.relationForKey("likeUsers")
         relation.removeObject(PFUser.currentUser()!)
         
