@@ -25,8 +25,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
 
-        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
-        
         initializeList()
         
         
@@ -40,6 +38,11 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
