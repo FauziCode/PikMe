@@ -214,7 +214,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RankCell" id="m0v-vk-QYV" customClass="RankCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0v-vk-QYV" id="yIR-ch-ZCU">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -602,7 +602,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="FtB-2J-ih3"/>
         <segue reference="Ha6-Tj-s6w"/>
-        <segue reference="BRI-0P-lsH"/>
     </inferredMetricsTieBreakers>
 </document>
