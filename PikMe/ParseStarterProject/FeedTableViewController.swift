@@ -62,7 +62,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            self.pikList = piks!
+            self.pikList = piks!.reverse()
             self.tableView.reloadData()
         }
     }
@@ -110,11 +110,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             }
             else
             {
-//              var el = Element()
-//              el.likeN = myPik.like;
-//              el.username = self.username;
-//              el.pic = img
-//              self.elementList.append(el)
                 self.pikList.append(myPik)
                 self.tableView.reloadData()
             }
@@ -172,7 +167,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var index = indexPath.row
+        var index = self.pikList.count - 1 - indexPath.row
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
         
         cell.nicknameLabel.text = self.pikList[index].user.username
