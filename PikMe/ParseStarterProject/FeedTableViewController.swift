@@ -74,7 +74,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         imagePickerController.delegate = self
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
             imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.allowsEditing = true
+            //imagePickerController.allowsEditing = true
             self.presentViewController(imagePickerController, animated: true, completion: nil)
         }
         
