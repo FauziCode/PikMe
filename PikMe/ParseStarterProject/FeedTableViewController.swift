@@ -22,6 +22,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     let loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     let loaderLabel = UILabel()
     let hiddenView = UIView()
+    var refresher = UIRefreshControl()
     
     let LABEL_WIDTH:CGFloat = 80
     let LABEL_HEIGHT:CGFloat = 20
@@ -33,6 +34,12 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         self.edgesForExtendedLayout = UIRectEdge.All
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
+        
+        /*Refresher*/
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        self.refresher = refreshControl
         
         /*Caricamento iniziale*/
         hiddenView.frame = CGRectMake(0, 0, self.FeedView.frame.size.width, self.FeedView.frame.size.height)
@@ -60,6 +67,12 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         // Dispose of any resources that can be recreated.
     }
     
+    func refresh(sender:AnyObject)
+    {
+        self.refresher.beginRefreshing()
+        initializeList()
+    }
+    
     func initializeList(){
         
         Cloud.getPikList(100, callback: callBacker)
@@ -84,6 +97,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             
             loaderLabel.hidden = true
             loader.stopAnimating()
+            refresher.endRefreshing()
         }
     }
     
