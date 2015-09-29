@@ -131,11 +131,13 @@ public class Cloud
     //---------------------------------------------------------------------
     //                              getPikList
     //---------------------------------------------------------------------
-    public class func getPikList(maxPik:Int, callback: (piks : [Pik]?, msgError: String?)->Void ){
+    public class func getPikList(maxPik:Int, orderByRank: Bool = false ,callback: (piks : [Pik]?, msgError: String?)->Void){
         var pikList = [Pik]()
         var query = Pik.query()
         query!.limit = maxPik
-        
+        if orderByRank {
+            query!.orderByDescending("like")
+        }
         query!.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
