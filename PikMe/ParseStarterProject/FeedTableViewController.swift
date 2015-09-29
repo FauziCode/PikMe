@@ -146,6 +146,8 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             {
                 self.pikList.append(myPik)
                 self.tableView.reloadData()
+                let indexpath = NSIndexPath(forRow: 0, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(indexpath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             }
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
