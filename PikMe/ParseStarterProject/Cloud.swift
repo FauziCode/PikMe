@@ -138,6 +138,7 @@ public class Cloud
         if orderByRank {
             query!.orderByDescending("like")
         }
+        
         query!.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
@@ -156,6 +157,41 @@ public class Cloud
             }
         }
     }
+    
+    
+    //---------------------------------------------------------------------
+    //                              getUserPikList
+    //---------------------------------------------------------------------
+    public class func getUserPikList(maxPik:Int, user: PFUser, orderByRank: Bool = false ,callback: (piks : [Pik]?, msgError: String?)->Void){
+        var pikList = [Pik]()
+        var query = Pik.query()
+        query!.limit = maxPik
+        if orderByRank {
+            query!.orderByDescending("like")
+        }
+        
+        query!.whereKey("user", equalTo: user)
+        
+        query!.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil
+            {
+                // The find succeeded.
+                println("Successfully retrieved \(objects!.count)")
+                pikList = objects as! [Pik]
+                callback(piks: pikList, msgError: nil)
+                
+            } else
+            {
+                // Log details of the failure
+                println("Error: \(error!) \(error!.userInfo!)")
+                callback(piks: nil, msgError: "Error: \(error!) \(error!.userInfo!)")
+            }
+        }
+    }
+    
+    
     
     
     

@@ -134,7 +134,8 @@ public class Pik: PFObject, PFSubclassing {
     public func unlike(callback: (succeded: Bool, msgError: String?)->Void)
     {
         
-        self.incrementKey("like", byAmount: NSNumber(int: -1))
+        //self.incrementKey("like", byAmount: (0-1))
+        self.like--
         let relation = self.relationForKey("likeUsers")
         relation.removeObject(PFUser.currentUser()!)
         
@@ -177,6 +178,12 @@ public class Pik: PFObject, PFSubclassing {
         //acl.setWriteAccess(true,)
         //self.ACL = PFACL(
         super.init()
+        let acl = PFACL()
+        acl.setPublicReadAccess(true)
+        acl.setPublicWriteAccess(true)
+        
+        self.ACL = acl
+        
         self.user = PFUser.currentUser()!
         
         

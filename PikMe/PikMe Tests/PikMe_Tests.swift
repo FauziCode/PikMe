@@ -9,6 +9,8 @@
 import UIKit
 import XCTest
 import PikMe
+import Parse
+
 
 class PikMe_Tests: XCTestCase {
     var image: UIImage?
@@ -26,7 +28,7 @@ class PikMe_Tests: XCTestCase {
     }
     
     func testParseSendAndRetrieve(){
-        // creo un oggetto pik da inviate e ed un expectation per il test asincrono
+        // creo un oggetto pik da inviare e ed un expectation per il test asincrono
         var pik = Pik(image: image!)
         let expectation = expectationWithDescription("Parse connection")
         
@@ -63,6 +65,23 @@ class PikMe_Tests: XCTestCase {
         
         //se entro 10 secondi non ho concluso il test fallisce
         waitForExpectationsWithTimeout(30.0,handler:nil)
+    }
+    
+    func testLike(){
+        XCTAssert(true,"Like effettuato")
+    }
+    
+    func testUnlike(){
+        
+        XCTAssert(true,"Unlike effettuato")
+    }
+    
+    func testGetUserPikList(){
+    
+        Cloud.getUserPikList(10, user: PFUser.currentUser()!, orderByRank: true) { (piks, msgError) -> Void in
+            NSLog("%@", piks!)
+        }
+        XCTAssert(true,"Lista pik ricevuta")
     }
     
     
