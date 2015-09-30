@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D1046A21B4AFB5F0005BF49 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */; };
 		7D1046A41B4AFE9A0005BF49 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1046A31B4AFE9A0005BF49 /* Icon-Small.png */; };
 		7D1046A61B4B02550005BF49 /* guysmartphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D1046A51B4B02550005BF49 /* guysmartphone.jpg */; };
 		7D30B0521BA5DAF10077E358 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D30B0511BA5DAF10077E358 /* RankViewController.swift */; };
@@ -75,7 +74,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		7D1046A31B4AFE9A0005BF49 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		7D1046A51B4B02550005BF49 /* guysmartphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guysmartphone.jpg; sourceTree = "<group>"; };
 		7D30B0511BA5DAF10077E358 /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 				7DECAEBC1B4980E50061559E /* FeedTableViewController.swift */,
 				7DECBFBD1B49BE5700C86243 /* Element.swift */,
 				7D67A0341B4ACEA600FECAEE /* SignupViewController.swift */,
-				7D1046A11B4AFB5F0005BF49 /* ProfileTableViewController.swift */,
 				7D30B0511BA5DAF10077E358 /* RankViewController.swift */,
 				7D7851F91BA746BE00C31ECC /* RankCell.swift */,
 				7DABE15F1BA8973200B10ABB /* ProfileViewController.swift */,
@@ -423,7 +420,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D30B0521BA5DAF10077E358 /* RankViewController.swift in Sources */,
-				7D1046A21B4AFB5F0005BF49 /* ProfileTableViewController.swift in Sources */,
 				7DABE1621BA8983600B10ABB /* ProfileElement.swift in Sources */,
 				7D67A0351B4ACEA600FECAEE /* SignupViewController.swift in Sources */,
 				7DEEBAD31B4184E600E0F7C9 /* LoginViewController.swift in Sources */,

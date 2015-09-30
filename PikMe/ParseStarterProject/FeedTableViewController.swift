@@ -15,7 +15,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     let username = Cloud.username()
     var pikList = [Pik]()
-    var elementList = [Element]()
     
     var FeedView: UIView! { return self.view as UIView }
     
@@ -173,14 +172,14 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         if(self.pikList[index].alreadyLike()) { /*C'è già il like*/
             self.pikList[index].unlike({ (succeded: Bool, msgError: String?)->Void in
                 if(msgError == nil) {
-                    self.pikList[index].like--;
+                    //self.pikList[index].like--;
                 }
             })
         }
         else { /*Non c'è il like*/
             self.pikList[index].like({ (succeded: Bool, msgError: String?)->Void in
                 if(msgError == nil) {
-                    self.pikList[index].like++;
+                    //self.pikList[index].like++;
                 }
             })
         }
@@ -216,6 +215,15 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             }
         })
         cell.likeCounterLabel.text = String(self.pikList[index].like)
+        
+        if(self.pikList[index].alreadyLike()) {
+            cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+            cell.likeButtonPressed = true;
+        }
+        else {
+            cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+            cell.likeButtonPressed = false;
+        }
         
         return cell
     }
