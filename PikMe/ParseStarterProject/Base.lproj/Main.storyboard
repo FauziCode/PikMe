@@ -286,6 +286,9 @@
                             </subviews>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnUsername" destination="FFq-vu-blP" id="kAF-Xj-Ci2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4U-LM-DAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -428,6 +431,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="lblUsername" destination="ZiB-Nw-c0l" id="mcS-nU-2pn"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjE-Sk-wol" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -596,7 +602,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LGC-rb-NdH"/>
-        <segue reference="BRI-0P-lsH"/>
+        <segue reference="FtB-2J-ih3"/>
+        <segue reference="Ha6-Tj-s6w"/>
     </inferredMetricsTieBreakers>
 </document>

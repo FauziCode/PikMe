@@ -17,6 +17,16 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     var pikList = [Pik]()
     var elementList = [Element]()
     
+    var FeedView: UIView! { return self.view as UIView }
+    
+    let loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    let loaderLabel = UILabel()
+    let hiddenView = UIView()
+    var refresher = UIRefreshControl()
+    
+    let LABEL_WIDTH:CGFloat = 80
+    let LABEL_HEIGHT:CGFloat = 20
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,25 +34,43 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         self.edgesForExtendedLayout = UIRectEdge.All
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
-
-        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
         
+        /*Refresher*/
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        self.refresher = refreshControl
+        
+        /*Caricamento iniziale*/
+        hiddenView.frame = CGRectMake(0, 0, self.FeedView.frame.size.width, self.FeedView.frame.size.height)
+        hiddenView.backgroundColor = UIColor.whiteColor()
+        hiddenView.alpha = 1
+        self.FeedView.addSubview(hiddenView)
+        
+        loaderLabel.frame = CGRectMake((self.hiddenView.frame.size.width - LABEL_WIDTH)/2 + 20, (self.hiddenView.frame.size.height - LABEL_HEIGHT)/2 - 80, LABEL_WIDTH, LABEL_HEIGHT)
+        loaderLabel.text = "Loading…";
+        self.hiddenView.addSubview(loaderLabel)
+        
+        loader.frame = CGRectMake(loaderLabel.frame.origin.x - LABEL_HEIGHT - 5,loaderLabel.frame.origin.y, LABEL_HEIGHT, LABEL_HEIGHT);
+        self.hiddenView.addSubview(loader)
+        loader.startAnimating()
+
         initializeList()
-        
-        
-        //        self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
-    //}
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        self.refresher.beginRefreshing()
+        initializeList()
     }
     
     func initializeList(){
@@ -59,8 +87,17 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            self.pikList = piks!
+            self.pikList = piks!.reverse()
             self.tableView.reloadData()
+            
+            UIView.beginAnimations(nil, context: nil)
+            UIView.setAnimationDuration(2)
+            self.hiddenView.alpha = 0
+            UIView.commitAnimations()
+            
+            loaderLabel.hidden = true
+            loader.stopAnimating()
+            refresher.endRefreshing()
         }
     }
     
@@ -71,7 +108,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         imagePickerController.delegate = self
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
             imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.allowsEditing = true
+            //imagePickerController.allowsEditing = true
             self.presentViewController(imagePickerController, animated: true, completion: nil)
         }
         
@@ -107,13 +144,10 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             }
             else
             {
-//              var el = Element()
-//              el.likeN = myPik.like;
-//              el.username = self.username;
-//              el.pic = img
-//              self.elementList.append(el)
                 self.pikList.append(myPik)
                 self.tableView.reloadData()
+                let indexpath = NSIndexPath(forRow: 0, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(indexpath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             }
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -169,7 +203,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var index = indexPath.row
+        var index = self.pikList.count - 1 - indexPath.row
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
         
         cell.nicknameLabel.text = self.pikList[index].user.username

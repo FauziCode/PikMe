@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBOutlet var usernameField: UITextField!
@@ -23,12 +23,32 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.usernameField.delegate = self;
+        self.mailField.delegate = self;
+        self.passwordField.delegate = self;
+        self.confirmPwdField.delegate = self;
+        
+        //Used to dismiss the keyboard when press outside TextFields
+        let tapper = UITapGestureRecognizer(target: self, action: "handleSingleTap");
+        self.view.addGestureRecognizer(tapper);
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Dismiss the keyboard when press Return
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
+    func handleSingleTap(){
+        
+        self.view.endEditing(true);
+    }
+    
     
     @IBAction func onSingUpBtClick(sender:UIButton){
         

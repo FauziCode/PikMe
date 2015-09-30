@@ -105,6 +105,8 @@ public class Pik: PFObject, PFSubclassing {
     {
         //la funzione incrementKey di PFObject incrementa una variabile numerica in modo atomico
         //per questo motivo chiamo anche la saveIn background...
+        
+        
         self.incrementKey("like")
         let relation = self.relationForKey("likeUsers")
         relation.addObject(PFUser.currentUser()!)
@@ -131,7 +133,9 @@ public class Pik: PFObject, PFSubclassing {
     //---------------------------------------------------------------------
     public func unlike(callback: (succeded: Bool, msgError: String?)->Void)
     {
-        self.incrementKey("like", byAmount: -1)
+        
+        //self.incrementKey("like", byAmount: (0-1))
+        self.like--
         let relation = self.relationForKey("likeUsers")
         relation.removeObject(PFUser.currentUser()!)
         
@@ -170,8 +174,18 @@ public class Pik: PFObject, PFSubclassing {
     //metodo costruttore
     public init(image: UIImage)
     {
+        //let acl = PFACL
+        //acl.setWriteAccess(true,)
+        //self.ACL = PFACL(
         super.init()
+        let acl = PFACL()
+        acl.setPublicReadAccess(true)
+        acl.setPublicWriteAccess(true)
+        
+        self.ACL = acl
+        
         self.user = PFUser.currentUser()!
+        
         
         let size = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.26, 0.26))
         let hasAlpha = false

@@ -18,6 +18,8 @@ class SinglePhotoViewController: UIViewController {
     @IBOutlet var likeButton: UIButton!
     
     var likeButtonPressed : Bool = false
+    let username = Cloud.username()
+    
     
     @IBAction func onLikePressed(sender: AnyObject) {
         toggleLikeButton()
@@ -34,6 +36,7 @@ class SinglePhotoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.UsernameLabel.text = username
     }
 
     override func didReceiveMemoryWarning() {

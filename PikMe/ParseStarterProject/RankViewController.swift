@@ -10,7 +10,10 @@ import UIKit
 
 class RankViewController: UITableViewController {
 
+    @IBOutlet weak var btnUsername: UIButton!
+    
     var elementList = [RankElement]()
+    let username = Cloud.username()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +34,21 @@ class RankViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.

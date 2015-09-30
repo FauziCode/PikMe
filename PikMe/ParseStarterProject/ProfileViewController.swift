@@ -12,11 +12,15 @@ let reuseIdentifier = "ProfileCell"
 
 class ProfileViewController: UICollectionViewController {
 
+    
+    @IBOutlet weak var lblUsername: UILabel!
+    
     var profileElementList = [ProfileElement]()
+    let username = Cloud.username()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,6 +37,10 @@ class ProfileViewController: UICollectionViewController {
         
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.lblUsername.text = username
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
