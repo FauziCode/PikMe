@@ -19,6 +19,7 @@ class SinglePhotoViewController: UIViewController {
     
     var likeButtonPressed : Bool = false
     let username = Cloud.username()
+    var image: UIImageView!
     
     
     @IBAction func onLikePressed(sender: AnyObject) {
