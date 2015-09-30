@@ -20,6 +20,8 @@ class ProfileViewController: UICollectionViewController {
     var pikList = [Pik]()
     var user = PFUser()
     
+    var selectedImage:UIImageView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +64,7 @@ class ProfileViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
-
+        selectedImage = cell.PersonalImage
     }
     
     
@@ -96,7 +98,7 @@ class ProfileViewController: UICollectionViewController {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         let singlePhotoVC = segue.destinationViewController as! SinglePhotoViewController
-        singlePhotoVC.u
+        singlePhotoVC.PhotoImageView = selectedImage
     }
     
 
