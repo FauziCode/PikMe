@@ -135,8 +135,12 @@ public class Cloud
         var pikList = [Pik]()
         var query = Pik.query()
         query!.limit = maxPik
+        
         if orderByRank {
             query!.orderByDescending("like")
+        }
+        else{
+            query!.orderByDescending("createdAt")
         }
         
         query!.findObjectsInBackgroundWithBlock {
