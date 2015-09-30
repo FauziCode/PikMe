@@ -86,7 +86,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            self.pikList = piks!
+            self.pikList = piks!.reverse()
             self.tableView.reloadData()
             
             UIView.beginAnimations(nil, context: nil)
@@ -167,7 +167,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let view = button.superview!
         let cell = view.superview as! ImageCell
         let indexPath = self.tableView.indexPathForCell(cell)
-        var index = indexPath!.row
+        var index = self.pikList.count - 1 - indexPath!.row
         
         if(self.pikList[index].alreadyLike()) { /*C'è già il like*/
             self.pikList[index].unlike({ (succeded: Bool, msgError: String?)->Void in
