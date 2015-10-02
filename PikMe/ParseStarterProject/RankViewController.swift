@@ -12,76 +12,90 @@ class RankViewController: UITableViewController {
 
     @IBOutlet weak var btnUsername: UIButton!
     
+    var pikList = [Pik]()
+
     var elementList = [RankElement]()
     let username = Cloud.username()
     
+    var selectedIndexPath: NSIndexPath!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for (var i = 0 ; i < 25 ; i++){
-            var el = RankElement()
-            el.position = i
-            el.username = "user_" + String(i)
-            el.totLikeN = i * 5
-            el.thumb = UIImage(named: "pic01.jpg")!
-            
-            elementList.append(el)
-        }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
         self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
+        
+        initializeList();
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func initializeList(){
+        
+        Cloud.getPikList(10, orderByRank: true, callback: callBacker)
+    }
+    
+    func callBacker(piks : [Pik]?, msgError: String?) -> Void {
+        
+        if(msgError != nil) { /*C'è un errore*/
+            var alert = UIAlertController(title: "Generic Error", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            self.pikList = piks!
+            self.tableView.reloadData()
+        }
+    }
 
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedIndexPath = indexPath
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        self.performSegueWithIdentifier("SinglePhotoSegue", sender: self)
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elementList.count
+        return self.pikList.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var index = indexPath.row
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("RankCell", forIndexPath: indexPath) as! RankCell
 
-       
-        var position =  elementList[index].position
-         var positionText = String(position) + "."
+        var position =  index + 1;
+        var positionText = String(position) + "."
         if (position < 10){
             positionText = "0" + positionText
         }
-        cell.UsernameLabel.text = elementList[index].username
+        cell.UsernameLabel.text = self.pikList[index].user.username
         cell.RankLabel.text = positionText
-        cell.LikeNumberLabel.text = String(elementList[index].totLikeN)
-        cell.Thumbnail.image = elementList[index].thumb
+        cell.LikeNumberLabel.text = String(self.pikList[index].like)
+        self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
+            if(msgError == nil) {
+                cell.Thumbnail.image = image
+            }
+            else {
+                
+            }
+        })
 
         return cell
     }
     
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -117,14 +131,17 @@ class RankViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "SinglePhotoSegue") {
+            let singlePhotoVC = segue.destinationViewController as! SinglePhotoViewController
+            
+            let cell:RankCell = tableView.cellForRowAtIndexPath(selectedIndexPath)! as! RankCell
+            singlePhotoVC.Image = cell.Thumbnail.image!
+            singlePhotoVC.Like = self.pikList[selectedIndexPath.row].like
+        }
     }
-    */
-
 }

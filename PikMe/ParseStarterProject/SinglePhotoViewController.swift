@@ -12,14 +12,16 @@ class SinglePhotoViewController: UIViewController {
 
     @IBOutlet var UsernameLabel: UILabel!
     @IBOutlet var PhotoImageView: UIImageView!
-    
     @IBOutlet var NLikeLabel: UILabel!
     
     @IBOutlet var likeButton: UIButton!
     
+    
+    var Image:UIImage!
+    var Like: Int!
+    
     var likeButtonPressed : Bool = false
     let username = Cloud.username()
-    var image: UIImageView!
     
     
     @IBAction func onLikePressed(sender: AnyObject) {
@@ -38,6 +40,8 @@ class SinglePhotoViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.UsernameLabel.text = username
+        self.PhotoImageView.image = self.Image
+        self.NLikeLabel.text = String(self.Like)
     }
 
     override func didReceiveMemoryWarning() {

@@ -13,15 +13,16 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     @IBOutlet weak var btnUsername: UIButton!
     
-    let username = Cloud.username()
     var pikList = [Pik]()
     
     var FeedView: UIView! { return self.view as UIView }
     
-    let loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    let loaderLabel = UILabel()
-    let hiddenView = UIView()
+    var loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    var loaderLabel = UILabel()
+    var hiddenView = UIView()
     var refresher = UIRefreshControl()
+    
+    var canRefresh: Bool = true
     
     let LABEL_WIDTH:CGFloat = 80
     let LABEL_HEIGHT:CGFloat = 20
@@ -39,26 +40,35 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         self.refresher = refreshControl
-        
-        /*Caricamento iniziale*/
-        hiddenView.frame = CGRectMake(0, 0, self.FeedView.frame.size.width, self.FeedView.frame.size.height)
-        hiddenView.backgroundColor = UIColor.whiteColor()
-        hiddenView.alpha = 1
-        self.FeedView.addSubview(hiddenView)
-        
-        loaderLabel.frame = CGRectMake((self.hiddenView.frame.size.width - LABEL_WIDTH)/2 + 20, (self.hiddenView.frame.size.height - LABEL_HEIGHT)/2 - 80, LABEL_WIDTH, LABEL_HEIGHT)
-        loaderLabel.text = "Loading…";
-        self.hiddenView.addSubview(loaderLabel)
-        
-        loader.frame = CGRectMake(loaderLabel.frame.origin.x - LABEL_HEIGHT - 5,loaderLabel.frame.origin.y, LABEL_HEIGHT, LABEL_HEIGHT);
-        self.hiddenView.addSubview(loader)
-        loader.startAnimating()
-
-        initializeList()
     }
 
     override func viewWillAppear(animated: Bool) {
-        self.btnUsername.setTitle(self.username, forState: UIControlState.Normal)
+        if(canRefresh) {
+            let username = Cloud.username()
+            self.btnUsername.setTitle(username, forState: UIControlState.Normal)
+            
+            /*Caricamento iniziale*/
+            let hiddenV = UIView()
+            hiddenV.frame = CGRectMake(0, 0, self.FeedView.frame.size.width, self.FeedView.frame.size.height)
+            hiddenV.backgroundColor = UIColor.whiteColor()
+            hiddenV.alpha = 1
+            self.FeedView.addSubview(hiddenV)
+            self.hiddenView = hiddenV
+            
+            let loaderL = UILabel()
+            loaderL.frame = CGRectMake((self.hiddenView.frame.size.width - LABEL_WIDTH)/2 + 20, (self.hiddenView.frame.size.height - LABEL_HEIGHT)/2 - 80, LABEL_WIDTH, LABEL_HEIGHT)
+            loaderL.text = "Loading…";
+            self.hiddenView.addSubview(loaderL)
+            self.loaderLabel = loaderL
+            
+            let loadeR = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+            loadeR.frame = CGRectMake(self.loaderLabel.frame.origin.x - LABEL_HEIGHT - 5, self.loaderLabel.frame.origin.y, LABEL_HEIGHT, LABEL_HEIGHT);
+            self.hiddenView.addSubview(loadeR)
+            self.loader = loadeR
+            loadeR.startAnimating()
+            
+            initializeList()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,16 +98,16 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         else {
             self.pikList = piks!.reverse()
             self.tableView.reloadData()
-            
-            UIView.beginAnimations(nil, context: nil)
-            UIView.setAnimationDuration(2)
-            self.hiddenView.alpha = 0
-            UIView.commitAnimations()
-            
-            loaderLabel.hidden = true
-            loader.stopAnimating()
-            refresher.endRefreshing()
         }
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(2)
+        self.hiddenView.alpha = 0
+        UIView.commitAnimations()
+        
+        loaderLabel.hidden = true
+        loader.stopAnimating()
+        refresher.endRefreshing()
     }
     
     /*Take a photo*/
@@ -150,6 +160,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             }
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
+        canRefresh = false
     }
         
     /*Cancel*/
