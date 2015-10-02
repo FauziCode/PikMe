@@ -77,6 +77,12 @@ class RankViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func refresh(sender:AnyObject)
+    {
+        self.refresher.beginRefreshing()
+        initializeList()
+    }
+    
     func initializeList(){
         
         Cloud.getPikList(10, orderByRank: true, callback: callBacker)
