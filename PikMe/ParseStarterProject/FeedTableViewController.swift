@@ -40,9 +40,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         self.refresher = refreshControl
-    }
-
-    override func viewWillAppear(animated: Bool) {
+        
         if(canRefresh) {
             let username = Cloud.username()
             self.btnUsername.setTitle(username, forState: UIControlState.Normal)
@@ -69,6 +67,10 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             
             initializeList()
         }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+
     }
     
     override func didReceiveMemoryWarning() {
