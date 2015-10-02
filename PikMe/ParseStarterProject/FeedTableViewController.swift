@@ -31,6 +31,8 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
         self.edgesForExtendedLayout = UIRectEdge.All
         //self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
         self.tableView.contentInset = UIEdgeInsetsMake(32.0, 0.0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0.0)
@@ -64,13 +66,11 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.hiddenView.addSubview(loadeR)
             self.loader = loadeR
             loadeR.startAnimating()
-            
-            initializeList()
         }
     }
 
     override func viewWillAppear(animated: Bool) {
-
+        initializeList()
     }
     
     override func didReceiveMemoryWarning() {

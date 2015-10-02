@@ -13,6 +13,16 @@ class RankViewController: UITableViewController {
     @IBOutlet weak var btnUsername: UIButton!
     
     var pikList = [Pik]()
+    
+    var RankView: UIView! { return self.view as UIView }
+    
+    var loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    var loaderLabel = UILabel()
+    var hiddenView = UIView()
+    var refresher = UIRefreshControl()
+    
+    let LABEL_WIDTH:CGFloat = 80
+    let LABEL_HEIGHT:CGFloat = 20
 
     var elementList = [RankElement]()
     let username = Cloud.username()
@@ -22,6 +32,38 @@ class RankViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        /*Refresher*/
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        self.refresher = refreshControl
+        
+        let username = Cloud.username()
+        self.btnUsername.setTitle(username, forState: UIControlState.Normal)
+        
+        /*Caricamento iniziale*/
+        let hiddenV = UIView()
+        hiddenV.frame = CGRectMake(0, 0, self.RankView.frame.size.width, self.RankView.frame.size.height)
+        hiddenV.backgroundColor = UIColor.whiteColor()
+        hiddenV.alpha = 1
+        self.RankView.addSubview(hiddenV)
+        self.hiddenView = hiddenV
+        
+        let loaderL = UILabel()
+        loaderL.frame = CGRectMake((self.hiddenView.frame.size.width - LABEL_WIDTH)/2 + 20, (self.hiddenView.frame.size.height - LABEL_HEIGHT)/2 - 80, LABEL_WIDTH, LABEL_HEIGHT)
+        loaderL.text = "Loading…";
+        self.hiddenView.addSubview(loaderL)
+        self.loaderLabel = loaderL
+        
+        let loadeR = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        loadeR.frame = CGRectMake(self.loaderLabel.frame.origin.x - LABEL_HEIGHT - 5, self.loaderLabel.frame.origin.y, LABEL_HEIGHT, LABEL_HEIGHT);
+        self.hiddenView.addSubview(loadeR)
+        self.loader = loadeR
+        loadeR.startAnimating()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,7 +93,17 @@ class RankViewController: UITableViewController {
         else {
             self.pikList = piks!
             self.tableView.reloadData()
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         }
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(2)
+        self.hiddenView.alpha = 0
+        UIView.commitAnimations()
+        
+        loaderLabel.hidden = true
+        loader.stopAnimating()
+        refresher.endRefreshing()
     }
 
     // MARK: - Table view data source
