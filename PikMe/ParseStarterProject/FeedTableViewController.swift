@@ -230,19 +230,31 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         var index = self.pikList.count - 1 - indexPath.row
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
         
-        cell.nicknameLabel.text = self.pikList[index].user.username
-        cell.photoImage.image = self.images[index]
-        cell.likeCounterLabel.text = String(self.pikList[index].like)
+        var nickname: String!
+        var image: UIImage!
+        var nlike: Int!
+        var alreadylike: Bool!
         
-        if(self.pikList[index].alreadyLike()) {
-            cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-            cell.likeButtonPressed = true;
-        }
-        else {
-            cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-            cell.likeButtonPressed = false;
-        }
-        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
+            nickname = self.pikList[index].user.username!
+            image = self.images[index]
+            nlike = self.pikList[index].like
+            alreadylike = self.pikList[index].alreadyLike()
+        })
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            cell.nicknameLabel.text = nickname
+            cell.photoImage.image = image
+            cell.likeCounterLabel.text = String(nlike)
+            
+            if((alreadylike) != nil && alreadylike == true) {
+                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                cell.likeButtonPressed = true;
+            }
+            else if((alreadylike) != nil && alreadylike == false) {
+                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                cell.likeButtonPressed = false;
+            }
+        })
         return cell
     }
     
