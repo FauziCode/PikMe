@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -100,7 +100,7 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="380"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DoH-UN-0gj" id="TfA-Q7-qX0">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="379.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sfondofoto.png" id="Kb2-05-LnX">
@@ -158,7 +158,7 @@
                     <navigationItem key="navigationItem" id="Fvz-0b-w6h">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="XYC-MM-qku">
-                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <rect key="frame" x="8" y="7.5" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V3C-Va-48b">
@@ -214,10 +214,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RankCell" id="m0v-vk-QYV" customClass="RankCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0v-vk-QYV" id="yIR-ch-ZCU">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_like.png" id="3el-Cn-5A6">
@@ -267,7 +267,7 @@
                     <navigationItem key="navigationItem" id="Su2-r2-eGC">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="ORu-ka-moV">
-                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <rect key="frame" x="8" y="7.5" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FFq-vu-blP">
@@ -360,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcX-tF-ZwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="1026"/>
+            <point key="canvasLocation" x="1996" y="815"/>
         </scene>
         <!--User profile-->
         <scene sceneID="5lI-v4-Bky">
@@ -394,7 +394,6 @@
                                 <size key="customSize" width="90" height="90"/>
                                 <connections>
                                     <outlet property="PersonalImage" destination="bTY-rw-eBe" id="dJ4-RL-BFu"/>
-                                    <segue destination="tWo-YY-EGK" kind="push" id="BRI-0P-lsH"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -406,7 +405,7 @@
                     <navigationItem key="navigationItem" id="MIP-aT-xZJ">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="CZO-o4-QwQ">
-                            <rect key="frame" x="84" y="8" width="153" height="29"/>
+                            <rect key="frame" x="83.5" y="7.5" width="153" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZiB-Nw-c0l">
@@ -433,6 +432,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lblUsername" destination="ZiB-Nw-c0l" id="mcS-nU-2pn"/>
+                        <segue destination="tWo-YY-EGK" kind="push" identifier="SinglePhotoSegue" id="aXT-xZ-Rqm"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjE-Sk-wol" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -602,7 +602,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BRI-0P-lsH"/>
         <segue reference="Ha6-Tj-s6w"/>
+        <segue reference="aXT-xZ-Rqm"/>
     </inferredMetricsTieBreakers>
 </document>

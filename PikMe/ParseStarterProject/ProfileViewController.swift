@@ -22,6 +22,8 @@ class ProfileViewController: UICollectionViewController {
     
     var selectedImage:UIImageView?
     
+    var selectedIndexPath: NSIndexPath!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +64,6 @@ class ProfileViewController: UICollectionViewController {
         }
     }
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
-        selectedImage = cell.PersonalImage
-    }
-    
-    
     @IBAction func onLogoutBtClick(sender: AnyObject) {
         
         Cloud.logOut(logoutCallBacker);
@@ -97,12 +93,25 @@ class ProfileViewController: UICollectionViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        let singlePhotoVC = segue.destinationViewController as! SinglePhotoViewController
-        //singlePhotoVC.u
+        if(segue.identifier == "SinglePhotoSegue") {
+            let singlePhotoVC = segue.destinationViewController as! SinglePhotoViewController
+            
+            let cell:ProfileCell = collectionView?.cellForItemAtIndexPath(selectedIndexPath) as! ProfileCell
+            singlePhotoVC.Image = cell.PersonalImage.image
+            singlePhotoVC.Like = self.pikList[selectedIndexPath.row].like
+            singlePhotoVC.Username = self.pikList[selectedIndexPath.row].user.username
+            singlePhotoVC.pikList = self.pikList
+            singlePhotoVC.indexInList = selectedIndexPath.row
+        }
     }
     
 
     // MARK: UICollectionViewDataSource
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.selectedIndexPath = indexPath
+        self.performSegueWithIdentifier("SinglePhotoSegue", sender: self)
+    }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
