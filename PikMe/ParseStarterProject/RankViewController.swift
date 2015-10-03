@@ -201,6 +201,8 @@ class RankViewController: UITableViewController {
             singlePhotoVC.Image = cell.Thumbnail.image!
             singlePhotoVC.Like = self.pikList[selectedIndexPath.row].like
             singlePhotoVC.Username = self.pikList[selectedIndexPath.row].user.username
+            singlePhotoVC.pikList = self.pikList
+            singlePhotoVC.indexInList = selectedIndexPath.row
         }
     }
 }

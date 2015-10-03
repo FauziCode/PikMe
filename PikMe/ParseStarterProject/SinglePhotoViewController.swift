@@ -15,23 +15,38 @@ class SinglePhotoViewController: UIViewController {
     @IBOutlet var NLikeLabel: UILabel!
     @IBOutlet var likeButton: UIButton!
     
-    
-    var Image:UIImage!
+    var Image: UIImage!
     var Like: Int!
     var Username: String!
-    
-    var likeButtonPressed : Bool = false
+    var pikList = [Pik]()
+    var indexInList: Int!
+    var likePressed: Bool = false;
+
     
     @IBAction func onLikePressed(sender: AnyObject) {
-        toggleLikeButton()
-        /*other stuffs here...*/
+        if(self.likePressed) { /*C'è già il like*/
+            self.pikList[indexInList].unlike({ (succeded: Bool, msgError: String?)->Void in
+                if(msgError == nil) {
+                    self.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                    self.likePressed = false
+                    var nLike = self.NLikeLabel.text?.toInt()
+                    nLike!--
+                    self.NLikeLabel.text = String(nLike!)
+                }
+            })
+        }
+        else { /*Non c'è il like*/
+            self.pikList[indexInList].like({ (succeded: Bool, msgError: String?)->Void in
+                if(msgError == nil) {
+                    self.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                    self.likePressed = true
+                    var nLike = self.NLikeLabel.text?.toInt()
+                    nLike!++
+                    self.NLikeLabel.text = String(nLike!)
+                }
+            })
+        }
     }
-    
-    func toggleLikeButton(){
-        likeButtonPressed = !likeButtonPressed
-        likeButtonPressed ? likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil) : likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +55,15 @@ class SinglePhotoViewController: UIViewController {
         self.UsernameLabel.text = self.Username
         self.PhotoImageView.image = self.Image
         self.NLikeLabel.text = String(self.Like)
+        
+        if(self.pikList[indexInList].alreadyLike()) { /*C'è già il like*/
+            self.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+            self.likePressed = true;
+        }
+        else {
+            self.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+            self.likePressed = false;
+        }
     }
 
     override func didReceiveMemoryWarning() {
