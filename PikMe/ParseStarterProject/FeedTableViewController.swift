@@ -14,6 +14,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var btnUsername: UIButton!
     
     var pikList = [Pik]()
+    var images = [UIImage]()
     
     var FeedView: UIView! { return self.view as UIView }
     
@@ -99,6 +100,16 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         }
         else {
             self.pikList = piks!.reverse()
+            for var index = 0; index < self.pikList.count; ++index {
+                self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
+                    if(msgError == nil) {
+                        self.images.append(image)
+                    }
+                    else {
+                        
+                    }
+                })
+            }
             self.tableView.reloadData()
         }
         
@@ -219,14 +230,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
         
         cell.nicknameLabel.text = self.pikList[index].user.username
-        self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
-            if(msgError == nil) {
-                cell.photoImage.image = image
-            }
-            else {
-                
-            }
-        })
+        cell.photoImage.image = self.images[index]
         cell.likeCounterLabel.text = String(self.pikList[index].like)
         
         if(self.pikList[index].alreadyLike()) {
