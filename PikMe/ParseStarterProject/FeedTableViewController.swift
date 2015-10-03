@@ -14,7 +14,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var btnUsername: UIButton!
     
     var pikList = [Pik]()
-    var images = [UIImage]()
     
     var FeedView: UIView! { return self.view as UIView }
     
@@ -117,12 +116,10 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     func callBacker2(image: UIImage?, msgError: String?)->Void {
         if(msgError == nil) {
-            self.images.append(image!)
-            if(self.images.count == self.pikList.count) {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
+    
     
     /*Take a photo*/
     @IBAction func takePhoto(sender: UIButton) {
@@ -228,32 +225,40 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var index = self.pikList.count - 1 - indexPath.row
-        let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
         
-        var nickname: String!
-        var image: UIImage!
-        var nlike: Int!
-        var alreadylike: Bool!
+        cell.photoImage.image = nil
+        cell.nicknameLabel.text = nil
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
-            nickname = self.pikList[index].user.username!
-            image = self.images[index]
-            nlike = self.pikList[index].like
-            alreadylike = self.pikList[index].alreadyLike()
-        })
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            cell.nicknameLabel.text = nickname
-            cell.photoImage.image = image
-            cell.likeCounterLabel.text = String(nlike)
+            var nickname = self.pikList[index].user.username!
+            var img = UIImage()
+            self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
+                if(msgError == nil) {
+                    img = image!
+                }
+                else {
+                    
+                }
+            })
+            var nlike = self.pikList[index].like
+            var alreadylike = self.pikList[index].alreadyLike()
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                cell.nicknameLabel.text = nickname
+                cell.photoImage.image = img
+                cell.likeCounterLabel.text = String(nlike)
             
-            if((alreadylike) != nil && alreadylike == true) {
-                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-                cell.likeButtonPressed = true;
-            }
-            else if((alreadylike) != nil && alreadylike == false) {
-                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-                cell.likeButtonPressed = false;
-            }
+                if(alreadylike) {
+                    cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                    cell.likeButtonPressed = true;
+                }
+                else {
+                    cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                    cell.likeButtonPressed = false;
+                }
+            })
         })
         return cell
     }
