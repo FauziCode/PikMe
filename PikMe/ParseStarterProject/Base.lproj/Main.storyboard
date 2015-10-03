@@ -602,7 +602,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kAp-rE-3Dz"/>
         <segue reference="Ha6-Tj-s6w"/>
+        <segue reference="kAp-rE-3Dz"/>
     </inferredMetricsTieBreakers>
 </document>
