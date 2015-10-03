@@ -200,6 +200,7 @@ class RankViewController: UITableViewController {
             let cell:RankCell = tableView.cellForRowAtIndexPath(selectedIndexPath)! as! RankCell
             singlePhotoVC.Image = cell.Thumbnail.image!
             singlePhotoVC.Like = self.pikList[selectedIndexPath.row].like
+            singlePhotoVC.Username = self.pikList[selectedIndexPath.row].user.username
         }
     }
 }

@@ -140,7 +140,7 @@ public class Cloud
             query!.orderByDescending("like")
         }
         else{
-            query!.orderByAscending("createdAt")
+            query!.orderByDescending("createdAt")
         }
         
         query!.findObjectsInBackgroundWithBlock {

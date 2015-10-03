@@ -19,10 +19,9 @@ class SinglePhotoViewController: UIViewController {
     
     var Image:UIImage!
     var Like: Int!
+    var Username: String!
     
     var likeButtonPressed : Bool = false
-    let username = Cloud.username()
-    
     
     @IBAction func onLikePressed(sender: AnyObject) {
         toggleLikeButton()
@@ -39,7 +38,7 @@ class SinglePhotoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.UsernameLabel.text = username
+        self.UsernameLabel.text = self.Username
         self.PhotoImageView.image = self.Image
         self.NLikeLabel.text = String(self.Like)
     }
