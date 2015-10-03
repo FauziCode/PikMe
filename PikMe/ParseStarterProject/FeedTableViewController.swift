@@ -101,16 +101,8 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         else {
             self.pikList = piks!.reverse()
             for var index = 0; index < self.pikList.count; ++index {
-                self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
-                    if(msgError == nil) {
-                        self.images.append(image)
-                    }
-                    else {
-                        
-                    }
-                })
+                self.pikList[index].getImage(callBacker2)
             }
-            self.tableView.reloadData()
         }
         
         UIView.beginAnimations(nil, context: nil)
@@ -121,6 +113,15 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         loaderLabel.hidden = true
         loader.stopAnimating()
         refresher.endRefreshing()
+    }
+    
+    func callBacker2(image: UIImage?, msgError: String?)->Void {
+        if(msgError == nil) {
+            self.images.append(image!)
+            if(self.images.count == self.pikList.count) {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     /*Take a photo*/
