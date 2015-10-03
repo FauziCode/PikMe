@@ -13,7 +13,6 @@ class SinglePhotoViewController: UIViewController {
     @IBOutlet var UsernameLabel: UILabel!
     @IBOutlet var PhotoImageView: UIImageView!
     @IBOutlet var NLikeLabel: UILabel!
-    
     @IBOutlet var likeButton: UIButton!
     
     
