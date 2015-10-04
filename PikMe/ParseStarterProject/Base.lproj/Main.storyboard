@@ -104,26 +104,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sfondofoto.png" id="Kb2-05-LnX">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="313"/>
+                                            <rect key="frame" x="0.0" y="6" width="328" height="313"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DLT-bq-Bw9">
-                                            <rect key="frame" x="55" y="305" width="41" height="26"/>
+                                            <rect key="frame" x="55" y="311" width="41" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="25"/>
                                             <color key="textColor" red="0.23137254900000001" green="0.50196078430000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_like.png" id="8hg-13-BLV">
-                                            <rect key="frame" x="22" y="300" width="32" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="54T-z0-YnV">
-                                            <rect key="frame" x="38" y="35" width="244" height="244"/>
+                                            <rect key="frame" x="22" y="306" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="31H-pG-SGT">
-                                            <rect key="frame" x="35" y="8" width="110" height="21"/>
+                                            <rect key="frame" x="35" y="14" width="110" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="StarryNight-Regular" family="Starry Night" pointSize="22"/>
@@ -132,7 +128,7 @@
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ndz-kL-rVn">
-                                            <rect key="frame" x="259" y="300" width="32" height="32"/>
+                                            <rect key="frame" x="259" y="306" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" backgroundImage="button_like_unpressed.png"/>
                                             <connections>
@@ -140,6 +136,10 @@
                                                 <action selector="onLikePressed:" destination="DoH-UN-0gj" eventType="touchUpInside" id="BZ0-Pc-TdA"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="54T-z0-YnV">
+                                            <rect key="frame" x="38" y="41" width="244" height="244"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -214,7 +214,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RankCell" id="m0v-vk-QYV" customClass="RankCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0v-vk-QYV" id="yIR-ch-ZCU">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -602,7 +602,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LGC-rb-NdH"/>
         <segue reference="aXT-xZ-Rqm"/>
+        <segue reference="LGC-rb-NdH"/>
     </inferredMetricsTieBreakers>
 </document>

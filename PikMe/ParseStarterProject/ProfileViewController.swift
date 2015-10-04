@@ -143,14 +143,20 @@ class ProfileViewController: UICollectionViewController {
     
         var index = indexPath.row
         
-        // Configure the cell
-        self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
-            if(msgError == nil) {
-                cell.PersonalImage.image = image
-            }
-            else {
-                
-            }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
+            var img = UIImage()
+            self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
+                if(msgError == nil) {
+                    img = image!
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        cell.PersonalImage.image = img
+                    })
+                }
+                else {
+                    
+                }
+            })
+            
         })
         return cell
     }
