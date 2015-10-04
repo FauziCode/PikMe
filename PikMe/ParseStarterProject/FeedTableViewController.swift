@@ -215,6 +215,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         if(self.pikList.count > 0) {
+            self.tableView.backgroundView = nil
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             return 1
         }

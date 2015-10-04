@@ -116,6 +116,7 @@ class ProfileViewController: UICollectionViewController {
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         if(self.pikList.count > 0) {
+            self.collectionView!.backgroundView = nil
             return 1
         }
         else {

@@ -122,6 +122,7 @@ class RankViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if(self.pikList.count > 0) {
+            self.tableView.backgroundView = nil
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
             return 1
         }
