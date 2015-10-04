@@ -214,7 +214,22 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        if(self.pikList.count > 0) {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            return 1
+        }
+        else {
+            let messageLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            messageLabel.text = "There are no photos uploaded.\n Be the first to upload one!";
+            messageLabel.textColor = UIColor.blackColor()
+            messageLabel.numberOfLines = 0;
+            messageLabel.textAlignment = NSTextAlignment.Center
+            messageLabel.sizeToFit()
+            
+            self.tableView.backgroundView = messageLabel
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        }
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

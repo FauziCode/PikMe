@@ -115,7 +115,20 @@ class ProfileViewController: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
-        return 1
+        if(self.pikList.count > 0) {
+            return 1
+        }
+        else {
+            let messageLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            messageLabel.text = "You haven't uploaded any photos yet.";
+            messageLabel.textColor = UIColor.blackColor()
+            messageLabel.numberOfLines = 0;
+            messageLabel.textAlignment = NSTextAlignment.Center
+            messageLabel.sizeToFit()
+            
+            self.collectionView!.backgroundView = messageLabel
+        }
+        return 0
     }
 
 
