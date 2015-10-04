@@ -247,6 +247,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 cell.nicknameLabel.text = nickname
+                cell.nicknameLabel.sizeToFit()
                 cell.photoImage.image = img
                 cell.likeCounterLabel.text = String(nlike)
             

@@ -53,6 +53,7 @@ class SinglePhotoViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.UsernameLabel.text = self.Username
+        self.UsernameLabel.sizeToFit()
         self.PhotoImageView.image = self.Image
         self.NLikeLabel.text = String(self.Like)
         
