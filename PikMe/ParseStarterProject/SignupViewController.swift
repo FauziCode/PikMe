@@ -61,11 +61,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             Cloud.signUp(usernameField.text, password: passwordField.text, email: mailField.text, callback: callBacker)
         
         }
-        
-        
-        
     }
-    
     
     func callBacker(succeded: Bool, msgError: String)->Void{
       
@@ -74,8 +70,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     func launchAlert(msg:String)->Void{
-        var alert = UIAlertController(title: "Signup", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        var alert = UIAlertController(title: "Sign-up error", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         
     }
