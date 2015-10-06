@@ -14,6 +14,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var btnUsername: UIButton!
     
     var pikList = [Pik]()
+    var cachedImages = [String: (UIImage, String)]()
     
     var FeedView: UIView! { return self.view as UIView }
     
@@ -66,13 +67,11 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.hiddenView.addSubview(loadeR)
             self.loader = loadeR
             loadeR.startAnimating()
+            
+            initializeList()
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
-        initializeList()
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -240,44 +239,54 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var index = self.pikList.count - 1 - indexPath.row
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
+        var index = self.pikList.count - 1 - indexPath.row
         
-        cell.photoImage.image = nil
-        cell.nicknameLabel.text = nil
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
-            var nickname = self.pikList[index].user.username!
-            var img = UIImage()
-            self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
-                if(msgError == nil) {
-                    img = image!
-                    var nlike = self.pikList[index].like
-                    var alreadylike = self.pikList[index].alreadyLike()
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        
-                        cell.nicknameLabel.text = nickname
-                        cell.nicknameLabel.sizeToFit()
-                        cell.photoImage.image = img
-                        cell.likeCounterLabel.text = String(nlike)
-                        
-                        if(alreadylike) {
-                            cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-                            cell.likeButtonPressed = true;
-                        }
-                        else {
-                            cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-                            cell.likeButtonPressed = false;
-                        }
-                    })
-                }
-                else {
-                    
-                }
-            })
+        let cellIdentifier = "Cell" + String(index)
+        if(self.cachedImages[cellIdentifier] != nil) {
+            let (image, user) = self.cachedImages[cellIdentifier]!
+            cell.photoImage.image = image
+            cell.nicknameLabel.text = user
+        }
+        else {
+            cell.photoImage.image = nil
+            cell.nicknameLabel.text = nil
             
-        })
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
+                var nickname = self.pikList[index].user.username!
+                var img = UIImage()
+                self.pikList[index].getImage({ (image: UIImage?, msgError: String?) -> Void in
+                    if(msgError == nil) {
+                        img = image!
+                        var nlike = self.pikList[index].like
+                        var alreadylike = self.pikList[index].alreadyLike()
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            
+                            cell.nicknameLabel.text = nickname
+                            cell.nicknameLabel.sizeToFit()
+                            cell.photoImage.image = img
+                            cell.likeCounterLabel.text = String(nlike)
+                            
+                            self.cachedImages.updateValue((img,nickname), forKey: cellIdentifier)
+                            
+                            if(alreadylike) {
+                                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                                cell.likeButtonPressed = true;
+                            }
+                            else {
+                                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                                cell.likeButtonPressed = false;
+                            }
+                        })
+                    }
+                    else {
+                        
+                    }
+                })
+                
+            })
+        }
         return cell
     }
     
