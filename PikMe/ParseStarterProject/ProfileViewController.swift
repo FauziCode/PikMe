@@ -21,9 +21,8 @@ class ProfileViewController: UICollectionViewController {
     var user = PFUser()
     
     var selectedImage:UIImageView?
-    
     var selectedIndexPath: NSIndexPath!
-    
+    var canVisualizeMsg: Bool = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +59,12 @@ class ProfileViewController: UICollectionViewController {
         }
         else {
             self.pikList = piks!.reverse()
+            if(self.pikList.count == 0) {
+                self.canVisualizeMsg = true;
+            }
+            else {
+                self.canVisualizeMsg = false;
+            }
             self.collectionView?.reloadData()
         }
     }
@@ -119,7 +124,7 @@ class ProfileViewController: UICollectionViewController {
             self.collectionView!.backgroundView = nil
             return 1
         }
-        else {
+        else if(self.canVisualizeMsg){
             let messageLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
             messageLabel.text = "You haven't uploaded any photos yet.";
             messageLabel.textColor = UIColor.blackColor()

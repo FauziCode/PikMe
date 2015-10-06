@@ -13,8 +13,9 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     @IBOutlet weak var btnUsername: UIButton!
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     var pikList = [Pik]()
-    var cachedImages = [String: (UIImage, String, Int, Bool)]()
     
     var FeedView: UIView! { return self.view as UIView }
     
@@ -67,14 +68,16 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.hiddenView.addSubview(loadeR)
             self.loader = loadeR
             loadeR.startAnimating()
-            
-            initializeList()
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        initializeList()
     }
     
     func refresh(sender:AnyObject)
@@ -209,7 +212,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let img:UIImage = cell.photoImage.image!
         let user: String = cell.nicknameLabel.text!
         let like = self.pikList[index].like
-        self.cachedImages.updateValue((img, user, like, !alreadyLike), forKey: cellIdentifier)
+        self.appDelegate.cachedImages.updateValue((img, user, like, !alreadyLike), forKey: cellIdentifier)
     }
     
     
@@ -249,13 +252,13 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         var index = self.pikList.count - 1 - indexPath.row
         
         let cellIdentifier = "Cell" + String(index)
-        if(self.cachedImages[cellIdentifier] != nil) {
-            let (image, user, like, likePressed) = self.cachedImages[cellIdentifier]!
+        if(self.appDelegate.cachedImages[cellIdentifier] != nil) {
+            let (image, user, like, likePressed) = self.appDelegate.cachedImages[cellIdentifier]!
             cell.photoImage.image = image
             cell.nicknameLabel.text = user
             cell.nicknameLabel.sizeToFit()
-            cell.likeCounterLabel.text = String(like)
-            if(likePressed) {
+            cell.likeCounterLabel.text = String(self.pikList[index].like)
+            if(self.pikList[index].alreadyLike()) {
                 cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
                 cell.likeButtonPressed = true;
             }
@@ -292,7 +295,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                                 cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
                                 cell.likeButtonPressed = false;
                             }
-                            self.cachedImages.updateValue((img, nickname, nlike, alreadylike), forKey: cellIdentifier)
+                            self.appDelegate.cachedImages.updateValue((img, nickname, nlike, alreadylike), forKey: cellIdentifier)
                         })
                     }
                     else {

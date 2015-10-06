@@ -46,6 +46,7 @@ class SinglePhotoViewController: UIViewController {
                 }
             })
         }
+        
     }
     
     override func viewDidLoad() {

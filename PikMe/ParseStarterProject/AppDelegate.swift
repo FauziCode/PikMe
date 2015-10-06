@@ -20,6 +20,8 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var cachedImages = [String: (UIImage, String, Int, Bool)]()
 
     //--------------------------------------
     // MARK: - UIApplicationDelegate
