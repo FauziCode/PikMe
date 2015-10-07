@@ -24,6 +24,7 @@ class SinglePhotoViewController: UIViewController {
 
     
     @IBAction func onLikePressed(sender: AnyObject) {
+        likeButton.enabled = false
         if(self.likePressed) { /*C'è già il like*/
             self.pikList[indexInList].unlike({ (succeded: Bool, msgError: String?)->Void in
                 if(msgError == nil) {
@@ -32,7 +33,9 @@ class SinglePhotoViewController: UIViewController {
                     var nLike = self.NLikeLabel.text?.toInt()
                     nLike!--
                     self.NLikeLabel.text = String(nLike!)
+                    self.likeButton.enabled = true
                 }
+                
             })
         }
         else { /*Non c'è il like*/
@@ -43,6 +46,7 @@ class SinglePhotoViewController: UIViewController {
                     var nLike = self.NLikeLabel.text?.toInt()
                     nLike!++
                     self.NLikeLabel.text = String(nLike!)
+                    self.likeButton.enabled = true
                 }
             })
         }
