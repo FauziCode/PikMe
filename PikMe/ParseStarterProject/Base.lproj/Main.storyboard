@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="332"/>
+            <point key="canvasLocation" x="174" y="332"/>
         </scene>
         <!--Stream-->
         <scene sceneID="bLP-cf-yuj">
@@ -559,11 +559,12 @@
                         <outlet property="mailField" destination="Pqe-zR-0D4" id="QmS-8U-9RV"/>
                         <outlet property="passwordField" destination="rbS-qz-Aba" id="NGy-wd-QNx"/>
                         <outlet property="usernameField" destination="8Mr-d8-cob" id="VBz-JQ-854"/>
+                        <segue destination="egg-qX-Uqn" kind="custom" identifier="signUpSegue" id="LLW-A9-Ao6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5f-XD-ikU" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="1136"/>
+            <point key="canvasLocation" x="174" y="1209"/>
         </scene>
         <!--Rank-->
         <scene sceneID="Szr-S6-Rqq">
@@ -602,7 +603,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aXT-xZ-Rqm"/>
+        <segue reference="LLW-A9-Ao6"/>
         <segue reference="LGC-rb-NdH"/>
+        <segue reference="aXT-xZ-Rqm"/>
     </inferredMetricsTieBreakers>
 </document>

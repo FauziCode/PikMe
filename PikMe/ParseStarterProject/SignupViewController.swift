@@ -52,21 +52,31 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onSingUpBtClick(sender:UIButton){
         
-        if (passwordField.text != confirmPwdField.text){
+        if (self.passwordField.text != self.confirmPwdField.text){
             
-            launchAlert("passwords do not match!")
+            launchAlert("Passwords do not match!")
             
         }
-        else {
-            Cloud.signUp(usernameField.text, password: passwordField.text, email: mailField.text, callback: callBacker)
         
+        else if(self.usernameField.text == "" || self.mailField.text == "" || self.passwordField.text == ""
+           || self.confirmPwdField.text == "") {
+            
+            launchAlert("All fields are required!")
+        }
+        else {
+            
+            Cloud.signUp(usernameField.text, password: passwordField.text, email: mailField.text, callback: callBacker)
         }
     }
     
     func callBacker(succeded: Bool, msgError: String)->Void{
       
-        launchAlert(msgError)
-        
+        if(!succeded) {
+            launchAlert(msgError)
+        }
+        else {
+            self.performSegueWithIdentifier("signUpSegue", sender: self)
+        }
     }
     
     func launchAlert(msg:String)->Void{
