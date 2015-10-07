@@ -58,14 +58,20 @@ class SinglePhotoViewController: UIViewController {
         self.PhotoImageView.image = self.Image
         self.NLikeLabel.text = String(self.Like)
         
-        if(self.pikList[indexInList].alreadyLike()) { /*C'è già il like*/
-            self.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-            self.likePressed = true;
-        }
-        else {
-            self.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-            self.likePressed = false;
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
+            let likeButtonPressed = self.pikList[self.indexInList].alreadyLike()
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if(likeButtonPressed) { /*C'è già il like*/
+                    self.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                    self.likePressed = true;
+                }
+                else {
+                    self.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                    self.likePressed = false;
+                }
+            })
+        })
     }
 
     override func didReceiveMemoryWarning() {

@@ -147,6 +147,8 @@ class ProfileViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
     
         var index = indexPath.row
+        cell.PersonalImage.image = nil;
+        cell.PersonalImage.backgroundColor = UIColor.grayColor()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
             var img = UIImage()
