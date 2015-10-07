@@ -223,6 +223,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     @IBAction func btnLikeTapped(sender: AnyObject) {
         
         let button = sender as! UIButton
+        button.enabled = false
         let view = button.superview!
         let cell = view.superview as! ImageCell
         let indexPath = self.tableView.indexPathForCell(cell)
@@ -236,6 +237,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                     if(msgError != nil) {
                         //self.pikList[index].like--;
                     }
+                    button.enabled = true
                 })
             }
             else { /*Non c'è il like*/
@@ -243,8 +245,10 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                     if(msgError != nil) {
                         //self.pikList[index].like++;
                     }
+                    button.enabled = true
                 })
             }
+            
         })
             
         let cellIdentifier = "Cell" + String(index)
