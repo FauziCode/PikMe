@@ -179,6 +179,9 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         self.labelEmptyMessage.text = "Uploading image..."
         self.labelEmptyMessage.sizeToFit()
         
+        let view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+        self.labelEmptyMessage.center = CGPointMake(CGRectGetMidX(view.bounds) - 3, CGRectGetMidY(view.bounds))
+        
         let img = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         /*Creo il pik*/
