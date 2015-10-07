@@ -277,8 +277,11 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             })
         }
         else { /*Non Cache*/
+            let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+            indicator.center = CGPointMake(CGRectGetMidX(cell.photoImage.bounds), CGRectGetMidY(cell.photoImage.bounds))
+            cell.photoImage.addSubview(indicator)
+            indicator.startAnimating()
             cell.photoImage.image = nil
-            //cell.nicknameLabel.text = nil
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
                 var nickname = self.pikList[index].user.username!
@@ -305,6 +308,8 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                                     cell.likeButtonPressed = false;
                                 }
                                 self.appDelegate.cachedImages.updateValue((img, nickname, nlike, alreadylike), forKey: cellIdentifier)
+                                
+                                indicator.stopAnimating()
                             })
                         })
                     }
