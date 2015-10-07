@@ -20,6 +20,15 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     var FeedView: UIView! { return self.view as UIView }
     
     var loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
+    var loaderNewImage = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    var labelNewImage = UILabel()
+    
+    var loaderEmptyList = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    var labelEmptyMessage = UILabel()
+    
+    var viewHeader = UIView()
+    
     var loaderLabel = UILabel()
     var hiddenView = UIView()
     var refresher = UIRefreshControl()
@@ -68,6 +77,19 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             self.hiddenView.addSubview(loadeR)
             self.loader = loadeR
             loadeR.startAnimating()
+            
+            self.viewHeader.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 30)
+            self.viewHeader.backgroundColor = UIColor.whiteColor()
+            self.viewHeader.hidden = true
+            
+            self.loaderNewImage.center = CGPointMake(CGRectGetMidX(self.viewHeader.bounds) - 60, CGRectGetMidY(self.viewHeader.bounds) - 20)
+            self.viewHeader.addSubview(self.loaderNewImage)
+            self.loaderNewImage.startAnimating()
+            
+            self.labelNewImage.center = CGPointMake(CGRectGetMidX(self.viewHeader.bounds) - 40, CGRectGetMidY(self.viewHeader.bounds) - 30)
+            self.labelNewImage.text = "Uploading image..."
+            self.labelNewImage.sizeToFit()
+            self.viewHeader.addSubview(self.labelNewImage)
         }
     }
 
@@ -105,15 +127,14 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                 self.pikList[index].getImage(callBacker2)
             }
         }
-        
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(2)
         self.hiddenView.alpha = 0
         UIView.commitAnimations()
         
-        loaderLabel.hidden = true
-        loader.stopAnimating()
-        refresher.endRefreshing()
+        self.loaderLabel.hidden = true
+        self.loader.stopAnimating()
+        self.refresher.endRefreshing()
     }
     
     func callBacker2(image: UIImage?, msgError: String?)->Void {
@@ -152,6 +173,12 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     /*Choose the photo*/
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
+        self.viewHeader.hidden = false;
+        self.loaderNewImage.startAnimating()
+        self.loaderEmptyList.startAnimating()
+        self.labelEmptyMessage.text = "Uploading image..."
+        self.labelEmptyMessage.sizeToFit()
+        
         let img = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         /*Creo il pik*/
@@ -170,6 +197,11 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                 self.tableView.reloadData()
                 let indexpath = NSIndexPath(forRow: 0, inSection: 0)
                 self.tableView.scrollToRowAtIndexPath(indexpath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                self.loaderNewImage.stopAnimating()
+                self.viewHeader.hidden = true;
+                self.loaderEmptyList.stopAnimating()
+                self.labelEmptyMessage.text = "There are no photos uploaded.\n Be the first to upload one!"
+                self.labelEmptyMessage.sizeToFit()
             }
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -218,7 +250,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     
     
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
@@ -228,19 +260,38 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             return 1
         }
         else {
-            let messageLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            let view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            
+            let messageLabel = UILabel()
             messageLabel.text = "There are no photos uploaded.\n Be the first to upload one!";
             messageLabel.textColor = UIColor.blackColor()
             messageLabel.numberOfLines = 0;
             messageLabel.textAlignment = NSTextAlignment.Center
             messageLabel.sizeToFit()
+            messageLabel.center = CGPointMake(CGRectGetMidX(view.bounds) - 3, CGRectGetMidY(view.bounds))
+            self.labelEmptyMessage = messageLabel
             
-            self.tableView.backgroundView = messageLabel
+            self.loaderEmptyList.center = CGPointMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds) - 40)
+            
+            view.addSubview(messageLabel)
+            view.addSubview(self.loaderEmptyList)
+            
+            view.sizeToFit()
+            
+            self.tableView.backgroundView = view
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         }
         return 0
     }
-
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if(self.pikList.count > 0) {
+            return self.viewHeader
+        }
+        return nil
+    }
+    
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.pikList.count
     }
@@ -281,7 +332,9 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             indicator.center = CGPointMake(CGRectGetMidX(cell.photoImage.bounds), CGRectGetMidY(cell.photoImage.bounds))
             cell.photoImage.addSubview(indicator)
             indicator.startAnimating()
+            
             cell.photoImage.image = nil
+            cell.nicknameLabel.text = nil;
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
                 var nickname = self.pikList[index].user.username!
