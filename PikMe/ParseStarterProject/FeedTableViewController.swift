@@ -228,21 +228,25 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let indexPath = self.tableView.indexPathForCell(cell)
         var index = self.pikList.count - 1 - indexPath!.row
         
-        let alreadyLike = self.pikList[index].alreadyLike()
-        if(alreadyLike) { /*C'è già il like*/
-            self.pikList[index].unlike({ (succeded: Bool, msgError: String?)->Void in
-                if(msgError == nil) {
-                    //self.pikList[index].like--;
-                }
-            })
-        }
-        else { /*Non c'è il like*/
-            self.pikList[index].like({ (succeded: Bool, msgError: String?)->Void in
-                if(msgError == nil) {
-                    //self.pikList[index].like++;
-                }
-            })
-        }
+        var alreadyLike = false;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
+            alreadyLike = self.pikList[index].alreadyLike()
+            if(alreadyLike) { /*C'è già il like*/
+                self.pikList[index].unlike({ (succeded: Bool, msgError: String?)->Void in
+                    if(msgError != nil) {
+                        //self.pikList[index].like--;
+                    }
+                })
+            }
+            else { /*Non c'è il like*/
+                self.pikList[index].like({ (succeded: Bool, msgError: String?)->Void in
+                    if(msgError != nil) {
+                        //self.pikList[index].like++;
+                    }
+                })
+            }
+        })
+            
         let cellIdentifier = "Cell" + String(index)
         let img:UIImage = cell.photoImage.image!
         let user: String = cell.nicknameLabel.text!
