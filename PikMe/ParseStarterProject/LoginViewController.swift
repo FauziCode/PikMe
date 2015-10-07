@@ -13,15 +13,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var userNameField: UITextField!
     @IBOutlet var passwordField: UITextField!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        userNameField.delegate = self;
-        passwordField.delegate = self;
+        self.userNameField.delegate = self;
+        self.passwordField.delegate = self;
+        self.indicator.hidden = true;
         
         //Used to dismiss the keyboard when press outside TextFields
         let tapper = UITapGestureRecognizer(target: self, action: "handleSingleTap");
@@ -49,8 +50,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onLoginBtClick(sender:UIButton){
         
-        Cloud.logIn(userNameField.text, password: passwordField.text, callback: callBacker)
-        
+        if(self.userNameField.text == "" || self.passwordField.text == "") {
+            launchAlert("All fields are required!")
+        }
+        else {
+            self.indicator.hidden = false
+            self.indicator.startAnimating()
+            Cloud.logIn(self.userNameField.text, password: self.passwordField.text, callback: callBacker)
+        }
     }
     
     
@@ -58,14 +65,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         if(msgError != "") { /*C'è un errore nel login*/
             
-            var alert = UIAlertController(title: "Authentication Error", message: msgError, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.indicator.stopAnimating()
+            launchAlert(msgError)
         }
         else {
-            performSegueWithIdentifier("loginSegue", sender: self);
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("loginSegue", sender: self);
+            }
         }
+    }
+    
+    func launchAlert(msg:String)->Void{
+        var alert = UIAlertController(title: "Login error", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     /*

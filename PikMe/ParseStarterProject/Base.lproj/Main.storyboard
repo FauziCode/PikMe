@@ -74,10 +74,15 @@
                                     <action selector="onLoginBtClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77c-UC-neD"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="uwg-aK-ktK">
+                                <rect key="frame" x="150" y="310" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="indicator" destination="uwg-aK-ktK" id="L10-Sd-4TE"/>
                         <outlet property="passwordField" destination="k5c-Z4-0x4" id="ucT-CO-zbK"/>
                         <outlet property="userNameField" destination="sD0-QP-Em9" id="D40-ht-MCA"/>
                         <segue destination="egg-qX-Uqn" kind="custom" identifier="loginSegue" id="Yte-oo-vqo"/>
@@ -551,11 +556,16 @@
                                     <action selector="onSingUpBtClick:" destination="Dh2-Lu-oow" eventType="touchUpInside" id="o9z-Pz-1Ds"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="BLr-rv-SUc">
+                                <rect key="frame" x="150" y="341" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="confirmPwdField" destination="kA3-MQ-BX7" id="mG6-WA-Yq8"/>
+                        <outlet property="indicator" destination="BLr-rv-SUc" id="1nT-px-EN3"/>
                         <outlet property="mailField" destination="Pqe-zR-0D4" id="QmS-8U-9RV"/>
                         <outlet property="passwordField" destination="rbS-qz-Aba" id="NGy-wd-QNx"/>
                         <outlet property="usernameField" destination="8Mr-d8-cob" id="VBz-JQ-854"/>

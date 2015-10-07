@@ -19,6 +19,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var confirmPwdField: UITextField!
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +29,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.mailField.delegate = self;
         self.passwordField.delegate = self;
         self.confirmPwdField.delegate = self;
+        
+        self.indicator.hidden = true
         
         //Used to dismiss the keyboard when press outside TextFields
         let tapper = UITapGestureRecognizer(target: self, action: "handleSingleTap");
@@ -55,7 +59,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         if (self.passwordField.text != self.confirmPwdField.text){
             
             launchAlert("Passwords do not match!")
-            
         }
         
         else if(self.usernameField.text == "" || self.mailField.text == "" || self.passwordField.text == ""
@@ -64,18 +67,22 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             launchAlert("All fields are required!")
         }
         else {
-            
+            self.indicator.hidden = false
+            self.indicator.startAnimating()
             Cloud.signUp(usernameField.text, password: passwordField.text, email: mailField.text, callback: callBacker)
         }
     }
     
     func callBacker(succeded: Bool, msgError: String)->Void{
       
-        if(!succeded) {
+        if(msgError != "") {
+            self.indicator.stopAnimating()
             launchAlert(msgError)
         }
         else {
-            self.performSegueWithIdentifier("signUpSegue", sender: self)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("signUpSegue", sender: self)
+            }
         }
     }
     
