@@ -146,7 +146,7 @@ class ProfileViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
     
-        var index = indexPath.row
+        var index = self.pikList.count - 1 - indexPath.row
         cell.PersonalImage.image = nil;
         cell.PersonalImage.backgroundColor = UIColor.grayColor()
         

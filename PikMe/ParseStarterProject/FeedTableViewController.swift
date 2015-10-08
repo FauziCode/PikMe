@@ -229,33 +229,38 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let indexPath = self.tableView.indexPathForCell(cell)
         var index = self.pikList.count - 1 - indexPath!.row
         
-        var alreadyLike = false;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
-            alreadyLike = self.pikList[index].alreadyLike()
+            var alreadyLike = self.pikList[index].alreadyLike()
             if(alreadyLike) { /*C'è già il like*/
                 self.pikList[index].unlike({ (succeded: Bool, msgError: String?)->Void in
-                    if(msgError != nil) {
-                        //self.pikList[index].like--;
+                    if(msgError == nil) {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            var like = self.pikList[index].like
+                            let cellIdentifier =  self.pikList[index].objectId!
+                            let img:UIImage = cell.photoImage.image!
+                            let user: String = cell.nicknameLabel.text!
+                            self.appDelegate.cachedImages.updateValue((img, user, like, !alreadyLike), forKey: cellIdentifier)
+                        })
                     }
                     button.enabled = true
                 })
             }
             else { /*Non c'è il like*/
                 self.pikList[index].like({ (succeded: Bool, msgError: String?)->Void in
-                    if(msgError != nil) {
-                        //self.pikList[index].like++;
+                    if(msgError == nil) {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            var like = self.pikList[index].like
+                            let cellIdentifier =  self.pikList[index].objectId!
+                            let img:UIImage = cell.photoImage.image!
+                            let user: String = cell.nicknameLabel.text!
+                            self.appDelegate.cachedImages.updateValue((img, user, like, !alreadyLike), forKey: cellIdentifier)
+                        })
                     }
                     button.enabled = true
                 })
             }
             
         })
-            
-        let cellIdentifier = "Cell" + String(index)
-        let img:UIImage = cell.photoImage.image!
-        let user: String = cell.nicknameLabel.text!
-        let like = self.pikList[index].like
-        self.appDelegate.cachedImages.updateValue((img, user, like, !alreadyLike), forKey: cellIdentifier)
     }
     
     
@@ -313,30 +318,39 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! ImageCell
         var index = self.pikList.count - 1 - indexPath.row
         
-        let cellIdentifier = "Cell" + String(index)
+        let cellIdentifier = self.pikList[index].objectId!
         
         if(self.appDelegate.cachedImages[cellIdentifier] != nil) { /*Cache*/
             let (image, user, like, likePressed) = self.appDelegate.cachedImages[cellIdentifier]!
             cell.photoImage.image = image
             cell.nicknameLabel.text = user
             cell.nicknameLabel.sizeToFit()
+            cell.likeCounterLabel.text = String(like)
+            if(likePressed) {
+                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                cell.likeButtonPressed = true;
+            }
+            else {
+                cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                cell.likeButtonPressed = false;
+            }
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
-                let nLike = String(self.pikList[index].like)
-                let likeButtonPressed = self.pikList[index].alreadyLike()
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    cell.likeCounterLabel.text = nLike
-                    if(likeButtonPressed) {
-                        cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-                        cell.likeButtonPressed = true;
-                    }
-                    else {
-                        cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-                        cell.likeButtonPressed = false;
-                    }
-                })
-            })
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
+//                let nLike = String(self.pikList[index].like)
+//                let likeButtonPressed = self.pikList[index].alreadyLike()
+//                
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    cell.likeCounterLabel.text = nLike
+//                    if(likeButtonPressed) {
+//                        cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+//                        cell.likeButtonPressed = true;
+//                    }
+//                    else {
+//                        cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+//                        cell.likeButtonPressed = false;
+//                    }
+//                })
+//            })
         }
         else { /*Non Cache*/
             let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -371,6 +385,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                                     cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
                                     cell.likeButtonPressed = false;
                                 }
+                                /*Salvo nella cache*/
                                 self.appDelegate.cachedImages.updateValue((img, nickname, nlike, alreadylike), forKey: cellIdentifier)
                                 
                                 indicator.stopAnimating()
