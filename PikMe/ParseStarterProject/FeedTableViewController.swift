@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class FeedTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate {
 
     
     @IBOutlet weak var btnUsername: UIButton!
@@ -311,7 +311,12 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.pikList.count
     }
-
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if(!self.viewHeader.hidden) {
+                self.viewHeader.hidden = true
+        }
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -334,23 +339,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                 cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
                 cell.likeButtonPressed = false;
             }
-            
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
-//                let nLike = String(self.pikList[index].like)
-//                let likeButtonPressed = self.pikList[index].alreadyLike()
-//                
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    cell.likeCounterLabel.text = nLike
-//                    if(likeButtonPressed) {
-//                        cell.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-//                        cell.likeButtonPressed = true;
-//                    }
-//                    else {
-//                        cell.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-//                        cell.likeButtonPressed = false;
-//                    }
-//                })
-//            })
         }
         else { /*Non Cache*/
             let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
