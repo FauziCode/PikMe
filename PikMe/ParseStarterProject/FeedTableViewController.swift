@@ -177,7 +177,6 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
         self.loaderNewImage.startAnimating()
         self.loaderEmptyList.startAnimating()
         self.labelEmptyMessage.text = "Uploading image..."
-        self.labelEmptyMessage.sizeToFit()
         
         let view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
         self.labelEmptyMessage.center = CGPointMake(CGRectGetMidX(view.bounds) - 3, CGRectGetMidY(view.bounds))
@@ -193,6 +192,7 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
             {
                 var alert = UIAlertController(title: "Network error", message: "Unable to saving the photo", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
             else
             {
@@ -200,12 +200,12 @@ class FeedTableViewController: UITableViewController, UINavigationControllerDele
                 self.tableView.reloadData()
                 let indexpath = NSIndexPath(forRow: 0, inSection: 0)
                 self.tableView.scrollToRowAtIndexPath(indexpath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-                self.loaderNewImage.stopAnimating()
-                self.viewHeader.hidden = true;
-                self.loaderEmptyList.stopAnimating()
-                self.labelEmptyMessage.text = "There are no photos uploaded.\n Be the first to upload one!"
-                self.labelEmptyMessage.sizeToFit()
             }
+            self.loaderNewImage.stopAnimating()
+            self.viewHeader.hidden = true;
+            self.loaderEmptyList.stopAnimating()
+            self.labelEmptyMessage.text = "There are no photos uploaded.\n Be the first to upload one!"
+            self.labelEmptyMessage.sizeToFit()
         }
         picker.dismissViewControllerAnimated(true, completion: nil)
         canRefresh = false
