@@ -146,6 +146,20 @@ public class Cloud
         query!.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
+            if let error = error
+            {
+                // KO
+                let errorString = error.userInfo?["error"] as! String
+                callback(piks: nil, msgError: errorString)
+            }
+            else
+            {
+                // OK
+                pikList = objects as! [Pik]
+                callback(piks: pikList, msgError: nil)
+            }
+            
+            /*
             if error == nil
             {
                 // The find succeeded.
@@ -157,8 +171,10 @@ public class Cloud
             {
                 // Log details of the failure
                 println("Error: \(error!) \(error!.userInfo!)")
-                callback(piks: nil, msgError: "Error: \(error!) \(error!.userInfo!)")
+                callback(piks: nil, msgError: (error.userInfo?["error"] as! String ))
+                //"Error: \(error!) \(error!.userInfo!)")
             }
+            */
         }
     }
     
@@ -179,6 +195,21 @@ public class Cloud
         query!.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
+            if let error = error
+            {
+                // KO
+                let errorString = error.userInfo?["error"] as! String
+                callback(piks: nil, msgError: errorString)
+            }
+            else
+            {
+                // OK
+                pikList = objects as! [Pik]
+                callback(piks: pikList, msgError: nil)
+            }
+            
+            
+            /*
             if error == nil
             {
                 // The find succeeded.
@@ -192,12 +223,7 @@ public class Cloud
                 println("Error: \(error!) \(error!.userInfo!)")
                 callback(piks: nil, msgError: "Error: \(error!) \(error!.userInfo!)")
             }
+            */
         }
     }
-    
-    
-    
-    
-    
-    
 }
