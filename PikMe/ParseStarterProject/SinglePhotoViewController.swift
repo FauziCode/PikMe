@@ -56,7 +56,7 @@ class SinglePhotoViewController: UIViewController {
     
     
     @IBAction func onLikePressed(sender: AnyObject) {
-        likeButton.enabled = false
+        self.likeButton.enabled = false
         if((self.likePressed) != nil && self.likePressed!) { /*C'è già il like*/
             self.pikList[indexInList].unlike({ (succeded: Bool, msgError: String?)->Void in
                 if(msgError == nil) {
