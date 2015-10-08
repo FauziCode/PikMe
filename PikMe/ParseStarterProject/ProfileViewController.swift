@@ -58,7 +58,7 @@ class ProfileViewController: UICollectionViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            self.pikList = piks!.reverse()
+            self.pikList = piks!
             if(self.pikList.count == 0) {
                 self.canVisualizeMsg = true;
             }
@@ -146,7 +146,7 @@ class ProfileViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
     
-        var index = self.pikList.count - 1 - indexPath.row
+        var index = indexPath.row
         cell.PersonalImage.image = nil;
         cell.PersonalImage.backgroundColor = UIColor.grayColor()
         
