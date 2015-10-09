@@ -85,6 +85,8 @@ class ProfileViewController: UICollectionViewController {
         }
         else {
             //performSegueWithIdentifier("logoutSegue", sender: self);
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+           appDelegate.cachedImages = [String: (UIImage, String, Int, Bool)]()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
             self.presentViewController(vc, animated: true, completion: nil)
