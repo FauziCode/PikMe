@@ -58,7 +58,7 @@ class ProfileViewController: UICollectionViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            self.pikList = piks!.reverse()
+            self.pikList = piks!
             if(self.pikList.count == 0) {
                 self.canVisualizeMsg = true;
             }
@@ -85,6 +85,8 @@ class ProfileViewController: UICollectionViewController {
         }
         else {
             //performSegueWithIdentifier("logoutSegue", sender: self);
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+           appDelegate.cachedImages = [String: (UIImage, String, Int, Bool)]()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
             self.presentViewController(vc, animated: true, completion: nil)
@@ -146,7 +148,7 @@ class ProfileViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ProfileCell
     
-        var index = self.pikList.count - 1 - indexPath.row
+        var index = indexPath.row
         cell.PersonalImage.image = nil;
         cell.PersonalImage.backgroundColor = UIColor.grayColor()
         

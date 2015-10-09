@@ -22,8 +22,8 @@ class SinglePhotoViewController: UIViewController {
     var Username: String!
     var pikList = [Pik]()
     var indexInList: Int!
-    var likePressed: Bool = false;
-
+    var likePressed: Bool!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,20 +34,19 @@ class SinglePhotoViewController: UIViewController {
         self.PhotoImageView.image = self.Image
         self.NLikeLabel.text = String(self.Like)
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {() -> Void in
-            let likeButtonPressed = self.pikList[self.indexInList].alreadyLike()
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if(likeButtonPressed) { /*C'è già il like*/
-                    self.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
-                    self.likePressed = true;
-                }
-                else {
-                    self.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
-                    self.likePressed = false;
-                }
-            })
-        })
+        let cellIdentifier =  self.pikList[self.indexInList].objectId!
+        if(self.appDelegate.cachedImages[cellIdentifier] != nil) { /*Cache*/
+            let (image, user, like, alreadyLike) = self.appDelegate.cachedImages[cellIdentifier]!
+        
+            if(alreadyLike) { /*C'è già il like*/
+                self.likeButton.setBackgroundImage(UIImage(named: "button_like_pressed"), forState: nil)
+                self.likePressed = true;
+            }
+            else {
+                self.likeButton.setBackgroundImage(UIImage(named: "button_like_unpressed"), forState: nil)
+                self.likePressed = false;
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,9 +54,10 @@ class SinglePhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     @IBAction func onLikePressed(sender: AnyObject) {
-        likeButton.enabled = false
-        if(self.likePressed) { /*C'è già il like*/
+        self.likeButton.enabled = false
+        if((self.likePressed) != nil && self.likePressed!) { /*C'è già il like*/
             self.pikList[indexInList].unlike({ (succeded: Bool, msgError: String?)->Void in
                 if(msgError == nil) {
                     /*Interfaccia*/
@@ -73,7 +73,7 @@ class SinglePhotoViewController: UIViewController {
                     let cellIdentifier =  self.pikList[self.indexInList].objectId!
                     let img:UIImage = self.Image!
                     let user: String = self.Username
-                    self.appDelegate.cachedImages.updateValue((img, user, like, self.likePressed), forKey: cellIdentifier)
+                    self.appDelegate.cachedImages.updateValue((img, user, like, self.likePressed!), forKey: cellIdentifier)
                 }
                 
             })
@@ -93,7 +93,7 @@ class SinglePhotoViewController: UIViewController {
                     let cellIdentifier =  self.pikList[self.indexInList].objectId!
                     let img:UIImage = self.Image!
                     let user: String = self.Username
-                    self.appDelegate.cachedImages.updateValue((img, user, like, self.likePressed), forKey: cellIdentifier)
+                    self.appDelegate.cachedImages.updateValue((img, user, like, self.likePressed!), forKey: cellIdentifier)
                 }
             })
         }
