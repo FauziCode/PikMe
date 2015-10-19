@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -55,29 +55,17 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dti-vU-GfM">
-                                <rect key="frame" x="110" y="538" width="100" height="30"/>
+                                <rect key="frame" x="97" y="528" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.55294117647058827" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Sign-up now">
-                                    <color key="titleColor" red="0.20784313730000001" green="0.44705882349999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Dh2-Lu-oow" kind="custom" id="T0B-kz-VHi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ShJ-z7-OKv">
-                                <rect key="frame" x="233" y="305" width="43" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.20784313725490197" green="0.44705882352941179" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onLoginBtClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77c-UC-neD"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="uwg-aK-ktK">
@@ -85,13 +73,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ShJ-z7-OKv">
+                                <rect key="frame" x="216" y="305" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.20392156859999999" green="0.4431372549" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLoginBtClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77c-UC-neD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="indicator" destination="uwg-aK-ktK" id="L10-Sd-4TE"/>
+                        <outlet property="loginButton" destination="ShJ-z7-OKv" id="9Wu-E4-GMo"/>
                         <outlet property="passwordField" destination="k5c-Z4-0x4" id="ucT-CO-zbK"/>
+                        <outlet property="switchToSignupButton" destination="Dti-vU-GfM" id="nrr-EN-Kpl"/>
                         <outlet property="userNameField" destination="sD0-QP-Em9" id="D40-ht-MCA"/>
                         <segue destination="egg-qX-Uqn" kind="custom" identifier="loginSegue" id="Yte-oo-vqo"/>
                     </connections>
@@ -180,7 +184,7 @@
                     <navigationItem key="navigationItem" id="Fvz-0b-w6h">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="XYC-MM-qku">
-                            <rect key="frame" x="8" y="7.5" width="304" height="29"/>
+                            <rect key="frame" x="8" y="8" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V3C-Va-48b">
@@ -241,7 +245,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RankCell" id="m0v-vk-QYV" customClass="RankCell" customModule="PikMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0v-vk-QYV" id="yIR-ch-ZCU">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -453,7 +457,7 @@
                     <navigationItem key="navigationItem" id="MIP-aT-xZJ">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="CZO-o4-QwQ">
-                            <rect key="frame" x="83.5" y="7.5" width="153" height="29"/>
+                            <rect key="frame" x="84" y="8" width="153" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZiB-Nw-c0l">
@@ -564,7 +568,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" id="rbS-qz-Aba">
-                                <rect key="frame" x="44" y="266" width="232" height="30"/>
+                                <rect key="frame" x="44" y="261" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="textColor" red="0.20784313730000001" green="0.44705882349999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -572,7 +576,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" minimumFontSize="17" id="Pqe-zR-0D4">
-                                <rect key="frame" x="44" y="225" width="232" height="30"/>
+                                <rect key="frame" x="44" y="223" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="textColor" red="0.20784313730000001" green="0.44705882349999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -580,7 +584,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" minimumFontSize="17" id="kA3-MQ-BX7">
-                                <rect key="frame" x="44" y="305" width="232" height="30"/>
+                                <rect key="frame" x="44" y="299" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="textColor" red="0.20784313730000001" green="0.44705882349999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -588,12 +592,13 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B9A-VO-U70">
-                                <rect key="frame" x="53" y="528" width="214" height="50"/>
+                                <rect key="frame" x="44" y="528" width="240" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.89411764705882357" green="0.46666666666666667" blue="0.51764705882352946" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Already registered? Login now">
-                                    <color key="titleColor" red="0.99215686270000003" green="0.52549019610000003" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -601,12 +606,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7O3-V8-Ixe">
-                                <rect key="frame" x="220" y="336" width="56" height="30"/>
+                                <rect key="frame" x="199" y="337" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.17647058823529413" green="0.38039215686274508" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Sign-up">
-                                    <color key="titleColor" red="0.99215686270000003" green="0.52549019610000003" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -627,6 +633,8 @@
                         <outlet property="indicator" destination="BLr-rv-SUc" id="1nT-px-EN3"/>
                         <outlet property="mailField" destination="Pqe-zR-0D4" id="QmS-8U-9RV"/>
                         <outlet property="passwordField" destination="rbS-qz-Aba" id="NGy-wd-QNx"/>
+                        <outlet property="signupButton" destination="7O3-V8-Ixe" id="b80-a9-u4j"/>
+                        <outlet property="switchToLoginButton" destination="B9A-VO-U70" id="yvQ-dp-PuC"/>
                         <outlet property="usernameField" destination="8Mr-d8-cob" id="VBz-JQ-854"/>
                         <segue destination="egg-qX-Uqn" kind="custom" identifier="signUpSegue" id="LLW-A9-Ao6"/>
                     </connections>

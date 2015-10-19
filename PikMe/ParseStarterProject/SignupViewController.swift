@@ -12,18 +12,25 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBOutlet var usernameField: UITextField!
-   
     @IBOutlet var mailField: UITextField!
- 
     @IBOutlet var passwordField: UITextField!
-    
     @IBOutlet var confirmPwdField: UITextField!
-    
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
+    @IBOutlet var signupButton: UIButton!
+    @IBOutlet var switchToLoginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        signupButton.layer.cornerRadius = 10
+        signupButton.layer.borderWidth = 2
+        signupButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        switchToLoginButton.layer.cornerRadius = 10
+        switchToLoginButton.layer.borderWidth = 2
+        switchToLoginButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
         // Do any additional setup after loading the view.
         self.usernameField.delegate = self;
         self.mailField.delegate = self;

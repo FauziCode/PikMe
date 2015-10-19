@@ -15,10 +15,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var passwordField: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var switchToSignupButton: UIButton!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loginButton.layer.cornerRadius = 10
+        loginButton.layer.borderWidth = 2
+        loginButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        switchToSignupButton.layer.cornerRadius = 10
+        switchToSignupButton.layer.borderWidth = 2
+        switchToSignupButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         self.userNameField.delegate = self;
         self.passwordField.delegate = self;
